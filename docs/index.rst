@@ -16,7 +16,7 @@ Let's start with a very short introduction. In computational physics a lot of th
    \begin{align}
       \dfrac{\partial f(x)}{\partial x} &= \lim_{\Delta x \rightarrow 0} \dfrac{f(x+\Delta x) - f(x)}{\Delta x} \approx \dfrac{f(x+\Delta x) - f(x)}{\Delta x}
       \\
-      \int f(x) dx &= \lim_{\Delta_x \rightarrow 0} \sum_n f(x_n) \Delta x \approx \sum_n f(x_n) \Delta x
+      \int f(x) dx &= \lim_{\Delta x \rightarrow 0} \sum_n f(x_0 + n \Delta x) \Delta x \approx \sum_n f(x_0 + n \Delta x) \Delta x
    \end{align}
 
 That's it. Everything else is variations of these approximations. Now, let's go into the details.
