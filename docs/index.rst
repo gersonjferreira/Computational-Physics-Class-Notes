@@ -13,11 +13,3 @@ Introduction to Computational Physics
    math.md
    test.md
 
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`  
