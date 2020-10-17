@@ -4,5 +4,5 @@
 extensions = ["recommonmark"]
 
 # The master toctree document.
-# master_doc = 'index'
+master_doc = 'index'
     
