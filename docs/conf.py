@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'Introduction to Computational Physics'
+project = 'Intro: Computational Physics'
 copyright = '2020, Gerson J. Ferreira'
 author = 'Gerson J. Ferreira'
 
