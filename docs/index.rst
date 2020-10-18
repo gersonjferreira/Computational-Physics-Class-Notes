@@ -21,16 +21,16 @@ That's it. Everything else is variations of these approximations. Now, let's go 
    :maxdepth: 2
    :caption: Intro to python
 
-   python/intropython.md
-   python/numpy.md
-   python/matplotlib.md
+   python/intropython.rst
+   python/numpy.rst
+   python/matplotlib.rst
 
 .. toctree::
    :numbered:
    :maxdepth: 2
    :caption: Basic calculus
 
-   calculus/integrals.md
+   calculus/integrals.rst
    calculus/derivatives.rst
 
 
