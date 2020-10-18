@@ -3,7 +3,7 @@ The python language
 
 .. code:: py
 
-    >>> print("Hello, world!")
+    print("Hello, world!")
 
 
 The IDEs
