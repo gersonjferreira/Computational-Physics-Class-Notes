@@ -17,7 +17,7 @@ These are the class notes for the course *Computational Physics*, lectured to th
 
    .. code-tab:: py
 
-        >>> print("Hello, world!")
+      print("Hello, world!")
 
    .. code-tab:: julia
 
