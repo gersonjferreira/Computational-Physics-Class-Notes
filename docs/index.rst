@@ -1,9 +1,14 @@
 Introduction to Computational Physics
 =================================================================
 
-.. image:: https://readthedocs.org/projects/compphysics/badge/?version=latest
-   :target: https://compphysics.readthedocs.io/?badge=latest
-   :alt: Documentation Status
+| Prof. Dr. Gerson J. Ferreira
+| Institute of Physics, Federal University of Uberlândia
+| `gjferreira.wordpress.com <https://gjferreira.wordpress.com>`_
+
+.. note::
+   Previously, I had written a book draft on *Computational Physics with examples in Julia*. But I don't want to publish it bacause computer languages change all the time and I want to keep adding topics and exemples. So, instead, I'm moving and updating the content of the book to this webpage.
+
+   In this new version I'll start with examples in **Python**. But in time I'll add examples in **Julia** and **C**.
 
 Let's start with a very short introduction. In computational physics a lot of things work by dropping the limits:
 
@@ -15,6 +20,13 @@ Let's start with a very short introduction. In computational physics a lot of th
    \end{align}
 
 That's it. Everything else is variations of these approximations. Now, let's go into the details.
+
+.. toctree::
+   :numbered:
+   :maxdepth: 2
+   :caption: About the course
+
+   intro.rst
 
 .. toctree::
    :numbered:
