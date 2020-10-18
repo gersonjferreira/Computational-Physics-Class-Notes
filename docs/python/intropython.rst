@@ -1,9 +1,15 @@
 The python language
 ===================
 
-Hello world and the IDEs
-------------------------
+.. tabs::
 
+    .. code-tab:: py
+
+        print("Hello, world!")
+
+
+The IDEs
+--------
 
 Variables, data types and operations
 ------------------------------------

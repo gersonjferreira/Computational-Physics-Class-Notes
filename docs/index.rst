@@ -73,8 +73,7 @@ Numerical calculus:
 
 #. Neide B. Franco - *Cálculo numérico*
 #. Selma Arenales, Artur Darezzo - *Cálculo numérico: aprendizagem com apoio de software*
-#. J. C. Butcher - *Numerical methods for ordinary differential equations*
-
+#. John C. Butcher - *Numerical methods for ordinary differential equations*
 
 Table of contents
 =================
