@@ -46,16 +46,42 @@ That's it. Everything else is variations of these approximations. Now, let's go 
 Main references
 ---------------
 
-.. \textbf{Text-books.} Complementing these notes, complete discussions on the proposed topics can be found on the books available at UFU's library\cite{CScherer2010Metodos, NFranco2006Calculo, Arenales2008Calculo, JCButcher2008NumericalODE, thijssen2007computational, pang2006introduction}, and other references presented throughout the notes.
+Let's split the main references into online tutorials, links to examples and books.
 
+**Online tutorials**
+
+#. Python at Tutorial's point: `[python] <https://www.tutorialspoint.com/python>`_, `[numpy] <www.tutorialspoint.com/numpy/>`_, `[matplotlib] <https://www.tutorialspoint.com/matplotlib/index.htm>`_
+
+#. Official documentation for `[numpy - scipy - matplotlib] <https://www.scipy.org/docs.html>`_
+
+**Useful links**
+
+#. Python: `Anaconda distribution <https://www.anaconda.com/>`_
+
+**Books**
+
+About computational physics and related:
+
+#. Tao Pang – *An Introduction to Computational Physics*
+#. Jos Thijssen – *Computational Physics*
+#. Philipp O. J. Scherer – *Computational Physics: Simulation of Classical and Quantum Systems*
+#. Cláudio Scherer – *Métodos Computacionais da Física*
+#. Páez & Bordeianu – *Computational Physics – Problem Solving with Python*
+#. Saul Teukolsky, William H. Press, and William T. Vetterling - *Numerical Recipes*
+
+Numerical calculus:
+
+#. Neide B. Franco - *Cálculo numérico*
+#. Selma Arenales, Artur Darezzo - *Cálculo numérico: aprendizagem com apoio de software*
+#. J. C. Butcher - *Numerical methods for ordinary differential equations*
 
 
 Table of contents
------------------
+=================
 
 .. toctree::
    :numbered:
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Intro to python
 
    python/intropython.rst
@@ -64,7 +90,7 @@ Table of contents
 
 .. toctree::
    :numbered:
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Basic calculus
 
    calculus/integrals.rst
@@ -72,7 +98,7 @@ Table of contents
 
 .. toctree::
    :numbered:
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Ordinary differential equations
 
    ode/initialvalueproblems.rst
@@ -80,7 +106,7 @@ Table of contents
 
 .. toctree::
    :numbered:
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Fourier transforms
 
    fft/intro_fft.rst
