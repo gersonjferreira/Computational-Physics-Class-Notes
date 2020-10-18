@@ -11,7 +11,28 @@ About the course
 These are the class notes for the course *Computational Physics*, lectured to the students of *Bacharelado em Física*, *Física Médica*, and *Licenciatura em Física* from the *Instituto de Física*, *Universidade Federal de Uberlândia* (**UFU**). Since this is an optional class intended for students with diverse knowledge and interest in Computational Physics and computer languages, I choose to discuss selected topics superficially with practical examples that may interest the students. Advanced topics are proposed as *home projects* to the students accordingly to their interest. 
 
 .. note:: 
-   Initially, I had written a book draft with examples in `Julia <https://julialang.org>`_, but since then this language has changed a lot (improved, actually!). The idea of this new webpage is to move the content of the book here and write examples in many languages (*Julia, Python, and C*). This will be a long process and I'll start with **Python** because its documentation is more accessible to new students. Later I'll add examples in Julia and C.
+   Initially, I had written a book draft with examples in `Julia <https://julialang.org>`_, but since then this language has changed a lot (improved, actually!). The idea of this new webpage is to move the content of the book here and write examples in many languages (*Julia, Python, and C*). This will be a long process and I'll start with **Python** because its documentation is more accessible to new students. Later I'll add examples in **Julia** and **C**, these will show up as in this *Hello, world!* example:
+
+.. tabs::
+
+   .. code-tab:: py
+
+        >>> print("Hello, world!")
+
+   .. code-tab:: julia
+
+      println("Hello world!")
+
+   .. code-tab:: c
+
+      #include <stdio.h>
+
+      int main() {
+         printf("Hello, world!\n");
+         return(0);
+      }      
+
+
 
 Topics
 ------
@@ -46,17 +67,15 @@ That's it. Everything else is variations of these approximations. Now, let's go 
 Main references
 ---------------
 
-Let's split the main references into online tutorials, links to examples and books.
+Let's split the main references into online tutorials, links to examples and books. I'll add more general references here as I write about each topic, while each topic will have specific references in the text.
 
-**Online tutorials**
+**Online tutorials, documentation and useful links**
 
 #. Python at Tutorial's point: `[python] <https://www.tutorialspoint.com/python>`_, `[numpy] <www.tutorialspoint.com/numpy/>`_, `[matplotlib] <https://www.tutorialspoint.com/matplotlib/index.htm>`_
 
 #. Official documentation for `[numpy - scipy - matplotlib] <https://www.scipy.org/docs.html>`_
 
-**Useful links**
-
-#. Python: `Anaconda distribution <https://www.anaconda.com/>`_
+#. Python's `Anaconda distribution <https://www.anaconda.com/>`_
 
 **Books**
 

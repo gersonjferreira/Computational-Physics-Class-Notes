@@ -1,11 +1,9 @@
 The python language
 ===================
 
-.. tabs::
+.. code:: py
 
-    .. code-tab:: py
-
-        print("Hello, world!")
+    >>> print("Hello, world!")
 
 
 The IDEs
