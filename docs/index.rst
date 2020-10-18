@@ -1,8 +1,3 @@
-.. Introduction to Computational Physics documentation master file, created by
-   sphinx-quickstart on Sat Oct 17 19:06:16 2020.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
 Introduction to Computational Physics
 =================================================================
 
@@ -18,19 +13,6 @@ Let's start with a very short introduction. In computational physics a lot of th
       \\
       \int f(x) dx &= \lim_{\Delta x \rightarrow 0} \sum_n f(x_0 + n \Delta x) \Delta x \approx \sum_n f(x_0 + n \Delta x) \Delta x
    \end{align}
-
-.. tabs::
-
-   .. code-tab:: c I love C
-
-         int main(const int argc, const char **argv) {
-           return 0;
-         }
-
-   .. code-tab:: py I love Python more
-
-         def main():
-             return
 
 That's it. Everything else is variations of these approximations. Now, let's go into the details.
 
@@ -49,6 +31,6 @@ That's it. Everything else is variations of these approximations. Now, let's go 
    :caption: Basic calculus
 
    calculus/integrals.md
-   calculus/derivatives.md
+   calculus/derivatives.rst
 
 
