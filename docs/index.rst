@@ -21,16 +21,24 @@ Let's start with a very short introduction. In computational physics a lot of th
 
 That's it. Everything else is variations of these approximations. Now, let's go into the details.
 
+Table of contents
+---------------------------------------------------------------------
+
 .. toctree::
    :numbered:
    :maxdepth: 2
-   :caption: Contents:
+   :caption: Intro to python
 
    python/intropython.md
    python/numpy.md
    python/matplotlib.md
 
+.. toctree::
+   :numbered:
+   :maxdepth: 2
+   :caption: Basic calculus
+
    calculus/integrals.md
    calculus/derivatives.md
-   
+
 
