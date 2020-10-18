@@ -33,4 +33,22 @@ That's it. Everything else is variations of these approximations. Now, let's go 
    calculus/integrals.rst
    calculus/derivatives.rst
 
+.. toctree::
+   :numbered:
+   :maxdepth: 2
+   :caption: Ordinary differential equations
+
+   ode/initialvalueproblems.rst
+   ode/boundary_value_problems.rst
+
+.. toctree::
+   :numbered:
+   :maxdepth: 2
+   :caption: Fourier transforms
+
+   fft/intro_fft.rst
+   
+
+
+
 
