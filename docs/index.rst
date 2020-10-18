@@ -21,9 +21,6 @@ Let's start with a very short introduction. In computational physics a lot of th
 
 That's it. Everything else is variations of these approximations. Now, let's go into the details.
 
-Table of contents
----------------------------------------------------------------------
-
 .. toctree::
    :numbered:
    :maxdepth: 2

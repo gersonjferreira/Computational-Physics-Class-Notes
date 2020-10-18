@@ -1,4 +1,4 @@
-# Introduction to python
+# The python language
 
 ## Hello world and the IDEs
 
