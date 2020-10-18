@@ -43,7 +43,7 @@ html_short_title = 'Intro: Computational Physics'
 # sphinx.ext.mathjax
 extensions = [
     'recommonmark',
-    'sphinx.ext.pngmath',
+    'sphinx.ext.imgmath',
     'sphinx_tabs.tabs'
 ]
 
