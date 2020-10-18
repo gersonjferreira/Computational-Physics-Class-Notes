@@ -105,6 +105,7 @@ Table of contents
    python/intropython.rst
    python/numpy.rst
    python/matplotlib.rst
+   python/otherlibs.rst
 
 .. toctree::
    :numbered:
