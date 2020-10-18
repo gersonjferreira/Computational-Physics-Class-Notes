@@ -37,10 +37,12 @@ html_short_title = 'Intro: Computational Physics'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
+
+# sphinx.ext.imgmath – Render math as images
 extensions = [
     'recommonmark',
     'sphinx.ext.mathjax',
-    'sphinx.ext.githubpages'
+    'sphinx_tabs.tabs'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
