@@ -38,10 +38,12 @@ html_short_title = 'Intro: Computational Physics'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 
-# sphinx.ext.imgmath – Render math as images
+# sphinx.ext.imgmath
+# sphinx.ext.pngmath
+# sphinx.ext.mathjax
 extensions = [
     'recommonmark',
-    'sphinx.ext.mathjax',
+    'sphinx.ext.pngmath',
     'sphinx_tabs.tabs'
 ]
 
