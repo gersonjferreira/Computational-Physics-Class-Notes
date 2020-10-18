@@ -26,6 +26,11 @@ That's it. Everything else is variations of these approximations. Now, let's go 
    :maxdepth: 2
    :caption: Contents:
 
-   math.md
-   test.md
+   python/intropython.md
+   python/numpy.md
+   python/matplotlib.md
+
+   calculus/integrals.md
+   calculus/derivatives.md
+   
 

@@ -34,3 +34,7 @@ The code to add to *_includes/extra/head.html* is:
 </script>
 <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 ```
+
+## Using math
+
+To call Latex on the **markdown** files use `\\( ... \\)` for inline math, and `\\[ ... \\]` for display style. On the **rst** files, use a math block `.. math::` for display style and for inline math use `:math:'...'`.
