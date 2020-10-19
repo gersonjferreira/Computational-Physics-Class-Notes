@@ -100,7 +100,7 @@ Table of contents
 .. toctree::
    :numbered:
    :maxdepth: 1
-   :caption: Intro to python
+   :caption: Python
 
    python/intropython.rst
    python/numpy.rst

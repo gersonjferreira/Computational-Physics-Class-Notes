@@ -1,5 +1,5 @@
-The python language
-===================
+Introduction to python
+======================
 
 .. code:: py
 
@@ -44,7 +44,32 @@ The images below show how these IDE look like, click to zoom.
         
         The Spyder IDE
 
-Other very interesting IDEs are the `PyCharm <https://www.jetbrains.com/pycharm/>`_ and `VS Code <https://code.visualstudio.com>`_. I actually use **VS Code** for everything: python, C, and even for writting this webpage. But if you are a beginner, I recommend you first try **Spyder** and **Jupyter**.
+Other very interesting IDEs are the `PyCharm <https://www.jetbrains.com/pycharm/>`_ and `VS Code <https://code.visualstudio.com>`_. I actually use **VS Code** for everything: python, C, and even for writting this webpage. But if you are a beginner, I recommend you first try **Spyder** or **Jupyter**.
+
+.. note:: 
+    
+    **Jupyter vs Spyder:** Both are great IDEs, however, they are quite different from each other. Their main *pros* and *cons* are:
+    
+    - *Jupyter*
+    
+        * (pro) Saves in a single *notebook* the code, markdown/latex notes, and the figures/plots;
+        
+        * (pro) Run code in cell blocks that allow you to split calculations and plots;
+
+        * (con) The *notebook* (.ipynb) is not a simple text file, but a *json* file; 
+        
+        * (con) There's no structure for debugging.
+    
+    - *Spyder* 
+
+        * (pro) Saves the code as simple text (.py);
+        
+        * (pro) It has a native debugging structure; 
+        
+        * (pro) Allows you to run individual *cells* (similar to jupyter);
+
+        * (con) Figures must be saved into files for storage.
+
 
 Using the IDEs
 ^^^^^^^^^^^^^^
@@ -65,7 +90,8 @@ To **change a cell type** check the buttons bar at the top of the window you see
 .. warning::
     It might be important to check the **workspace directory** on the top right corner of the window, as it **defines the relative path** to read and save files.
 
-Spyder allows you to choose how to show the plots/images. To find the options go to *Tools > Preferences > IPython console > Graphics > Backend*. To capture the plots into the Spyder panel, choose *inline*, and to plot as a separate window, choose *automatic*.
+Spyder allows you to choose how to show the plots/images. To find the options go to ``Tools > Preferences > IPython console > Graphics > Backend``. To capture the plots into the Spyder panel, choose **inline**, and to plot as a separate window, choose **automatic**.
+
 
 Variables, data types and operations
 ------------------------------------
