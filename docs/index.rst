@@ -33,6 +33,12 @@ These are the class notes for the course *Computational Physics*, lectured to th
       }      
 
 
+Important links and info
+------------------------
+
+To access the class on MS Teams, use the code ``igor2v3``.
+
+All classes are recorded and available at the `MS Stream Channel Intro Fis Comp 2020 <https://web.microsoftstream.com/channel/2a236d9f-7c07-4410-94c7-537cd4af9427>`_
 
 Topics
 ------
