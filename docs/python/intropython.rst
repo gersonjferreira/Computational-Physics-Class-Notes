@@ -9,7 +9,7 @@ Introduction to python
 
 Here I'll give a brief introduction to essential features of the language and how to use it. I suggest we use the `Anaconda distribution <https://www.anaconda.com>`_, since it runs equally well in Linux, Windows and Mac. Also, besides my introduction below, check also these tutorials:
 
-#. Python at Tutorial's point: `[python] <https://www.tutorialspoint.com/python>`_, `[numpy] <www.tutorialspoint.com/numpy/>`_, `[matplotlib] <https://www.tutorialspoint.com/matplotlib/index.htm>`_
+#. Python at Tutorial's point: `[python] <https://www.tutorialspoint.com/python>`_, `[numpy] <https://www.tutorialspoint.com/numpy/>`_, `[matplotlib] <https://www.tutorialspoint.com/matplotlib/index.htm>`_
 
 #. Official documentation for `[numpy - scipy - matplotlib] <https://www.scipy.org/docs.html>`_
 
