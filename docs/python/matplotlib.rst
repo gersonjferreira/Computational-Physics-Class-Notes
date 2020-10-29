@@ -16,18 +16,6 @@ Just like in your first *lab classes*, to plot something on a graph paper (*pape
 
     * - 
 
-        +--------+---------+
-        |  t(s)  |  S(cm)  |
-        +========+=========+
-        |   0.8  |   4.0   |
-        +--------+---------+
-        |   2.2  |   6.0   |
-        +--------+---------+
-        |   2.8  |   7.5   |
-        +--------+---------+
-        |   ...  |   ...   |
-        +--------+---------+
-
         The data is organized as two columns 
 
         corresponding to the x and y axes 
