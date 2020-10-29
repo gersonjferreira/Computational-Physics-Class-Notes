@@ -8,23 +8,25 @@ How to organized data for a simple plot?
 
 To plot something we need the data. Typically this means using **numpy**, which we will discuss in details on the next chapter. For now, let's check only a few **numpy commands** to help us organize the data and make plots.
 
-Just like in your first *lab classes*, to plot something on a graph paper (*papel milimetrado* in Portuguese), you need a set of *(x,y)* points on a table.
+Just like in your first *lab classes*, to plot something on a graph paper (*papel milimetrado* in Portuguese), you need a set of *(x,y)* points on a table, for instance:
 
-.. list-table:: How to plot on a graph paper?
-    :widths: 1 2
-    :header-rows: 0
+.. image:: ./figs/graphpaper.png
+    :width: 50%
+    :align: right
 
-    * - 
++--------+---------+
+|  t(s)  |  S(cm)  |
++========+=========+
+|   0.8  |   4.0   |
++--------+---------+
+|   2.2  |   6.0   |
++--------+---------+
+|   2.8  |   7.5   |
++--------+---------+
+|   ...  |   ...   |
++--------+---------+
 
-        The data is organized as two columns 
-
-        corresponding to the x and y axes 
-
-        and plotted as shown on the figure.
-
-      - .. image:: ./figs/graphpaper.png
-            :width: 99%
-            :align: center
+The data on the table is then used to draw the points in the graph paper, as in this figure.
 
 A first example
 ^^^^^^^^^^^^^^^
