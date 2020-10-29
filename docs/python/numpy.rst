@@ -1,16 +1,22 @@
 Introduction to numpy
 =====================
 
-Arrays and matrices
--------------------
+I'm writting this tutorial. For now check these:
 
-Broadcasting
-------------
+- https://numpy.org/devdocs/user/quickstart.html
 
-Useful operations
------------------
+- https://www.w3schools.com/python/numpy_intro.asp
 
-Linear algebra
---------------
+- https://www.tutorialspoint.com/numpy/index.htm
+
+
+.. Arrays and matrices
+    -------------------
+    Broadcasting
+    ------------
+    Useful operations
+    -----------------
+    Linear algebra
+    --------------
 
 
