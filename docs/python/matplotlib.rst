@@ -297,9 +297,9 @@ Now let's make it look good!
 
         - rcParams allow you to inform a Latex preamble, where you can import your Latex packages;
 
-        - the **line style** parameter (**ls**) in *plt.plot* allows you to choose between solid ('-'), dashed ('--'), dash-dot ('-.'), and dotted (':'). For more, check `the documentation <https://matplotlib.org/api/_as_gen/matplotlib.pyplot.plot.html#matplotlib.pyplot.plot>`_ and this `more advanced example <https://matplotlib.org/gallery/lines_bars_and_markers/linestyles.html#sphx-glr-gallery-lines-bars-and-markers-linestyles-py>`_;
+        - the **line style** parameter (**ls**) in *plt.plot* allows you to choose between solid ('-'), dashed ('--'), dash-dot ('-.'), and dotted (':'). For more, check `the plot documentation <https://matplotlib.org/api/_as_gen/matplotlib.pyplot.plot.html#matplotlib.pyplot.plot>`_ and this `more advanced example <https://matplotlib.org/gallery/lines_bars_and_markers/linestyles.html#sphx-glr-gallery-lines-bars-and-markers-linestyles-py>`_;
 
-        - now the **legend** is specified with a location (*loc*) and number of columns (*ncol*). For more options, check `the documentation <https://matplotlib.org/api/legend_api.html?highlight=legend#module-matplotlib.legend>`_;
+        - now the **legend** is specified with a location (*loc*) and number of columns (*ncol*). For more options, check `the legend documentation <https://matplotlib.org/api/legend_api.html>`_;
 
         - the **x ticks** are now explicitly set on the most relevant points, and the numbers are replaced by labels using Latex. Notice that the first parameter is a list of points and the second a list of strings replacing those points. The same could be applied for the **y ticks**;
 
