@@ -125,6 +125,51 @@ Let's discuss the new elements in the second example above.
 .. note::
     Here I'm using the **polyfit** from numpy because it is quite simple to use. However, for more complicated fits it is better to use the **curve_fit** command from **scipy**.
 
+Adding error bars
+^^^^^^^^^^^^^^^^^
+
+Since the example above deals with uncertain data and a fit for the best curve, it's also interesting to add error bars. So, let's consider the ``yerr`` as uncertainties in the **y** data to plot this next example.
+
+.. tabs::
+
+    .. code-tab:: py Error bars
+        :linenos:
+
+        import matplotlib.pyplot as plt
+        import numpy as np
+
+        # now we need x and y to be numpy arrays
+        x = np.array([ 0.8, 2.2, 2.8, 3.8, 5.2, 6.3, 7.3, 7.9, 9.4, 10.0 ])
+        y = np.array([ 4.0, 6.0, 7.5, 12, 15, 17.5, 22, 23, 27, 30 ])
+        yerr = np.array([2, 3, 3, 2, 1, 4, 2, 3, 2, 3])
+
+        # fit the data as a polynomial of order 1: y = c0*x¹ + c1
+        c = np.polyfit(x, y, 1)
+        # apply fit on x to get the fitted yf
+        yf = c[0]*x + c[1]
+
+        # plot the points with error bars
+        plt.errorbar(x, y, yerr=yerr, color='black', fmt='o')
+        # and plot the fitted line
+        plt.plot(x, yf, color='red')
+        # add elements
+        plt.xlabel('t (s)')
+        plt.ylabel('S (cm)')
+        plt.grid()
+        # and finish the plot
+        plt.show()
+    
+    .. tab:: The plot
+
+        .. image:: ./figs/ex1-errorbar.png
+            :width: 75%
+            :align: center
+
+    .. tab:: About the code
+
+        Here we have replaced the **scatter** with the **errobar** call, where now we inform the **yerr** parameter with the list of uncertainties for each point, and the option **fmt='o'** selects the scatter-type of plot with circles as symbols.
+
+
 Make it look good!
 ------------------
 
@@ -152,7 +197,7 @@ Now let's check another example using trigonometric functions that will allow us
             :width: 75%
             :align: center
     
-    .. tab:: The new commands
+    .. tab:: About the code
 
         - **np.linspace(x0, xf, xpts)** creates an array of *xpts* from x0 to xf.
 
@@ -199,7 +244,7 @@ Let's try one by one. First let's increase the font size.
             :width: 75%
             :align: center
     
-    .. tab:: The new commands
+    .. tab:: About the code
 
         the **rcParams** define the matplotlib configuration and can be updated as shown in the example using dictionaries with the parameter names and values. There, the 'font.size' parameter will apply to all text in the plot. Alternatively, you can also specify the 'fontsize' in specific elements of the plot, as in the **ylabel** line.
 
@@ -243,7 +288,7 @@ Now let's use Latex on the labels and add legends.
             :width: 75%
             :align: center
     
-    .. tab:: The new commands
+    .. tab:: About the code
 
         - Now we are updating the rcParams to set the option **text.usetex = True**.
 
@@ -293,7 +338,7 @@ Now let's make it look good!
             :width: 75%
             :align: center
     
-    .. tab:: The new commands
+    .. tab:: About the code
 
         - rcParams allow you to inform a Latex preamble, where you can import your Latex packages;
 
@@ -362,7 +407,7 @@ Let's see examples how to break your figure into panels and insets. We'll use th
             :width: 75%
             :align: center
     
-    .. tab:: The new commands
+    .. tab:: About the code
 
         - **plt.gca()** gets the current axes. This object is needed when dealing with multiple axes.
 
@@ -427,7 +472,7 @@ Another useful structure is to break your plot into panels, as in the example be
             :width: 75%
             :align: center
     
-    .. tab:: The new commands
+    .. tab:: About the code
 
         - the **plt.text(x, y, s)** command places the label *s* at the point (x, y). By default it uses the data coordinates, but it is usually better to the use the panel coordinates (from 0 to 1) by specifying **transform=plt.gca().transAxes**.
 
@@ -482,7 +527,7 @@ To make an animation we need a code that draws each frame of the video. Here we'
             :width: 75%
             :align: center
     
-    .. tab:: The new commands
+    .. tab:: About the code
 
         - the function **animate** takes the frame index *i* and plots the function and a red dot using the frame index *i* to get the element *i* of the x and y arrays. The **plt.clf()** clears the figure before each frame.
 
