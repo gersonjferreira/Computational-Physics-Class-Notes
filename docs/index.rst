@@ -109,8 +109,8 @@ Table of contents
    :caption: Python
 
    python/intropython.rst
-   python/numpy.rst
    python/matplotlib.rst
+   python/numpy.rst
    python/otherlibs.rst
 
 .. toctree::
