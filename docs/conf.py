@@ -44,8 +44,7 @@ html_short_title = 'Intro: Computational Physics'
 # sphinx.ext.mathjax
 extensions = [
     'sphinx.ext.mathjax',
-    'sphinx_tabs.tabs',
-    'sphinxcontrib.video'
+    'sphinx_tabs.tabs'
 ]
 
 # Add any paths that contain templates here, relative to this directory.

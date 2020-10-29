@@ -438,3 +438,55 @@ For more information and other forms to arrange the subplots, please check `the 
 Animations
 ----------
 
+To make an animation we need a code that draws each frame of the video. Here we'll check a very simple example. We draw a sine function, and at each frame *i* we put a red dot at the point :math:`(x_i, y_i)`. 
+
+.. tabs::
+
+    .. code-tab:: py Subplots on simple grid
+        :linenos:
+        
+        import matplotlib.pyplot as plt
+        import matplotlib.animation as animation
+        import numpy as np
+
+        # data to plot
+        x = np.linspace(0, 4*np.pi, 200)
+        y = np.sin(x)
+
+        # the function takes the frame i as a parameter
+        # and plot it
+        def animate(i):
+            plt.clf()
+            # plot the main lines
+            plt.plot(x, y, color='black')
+            # and a dot at the (x[i], y[i])
+            plt.scatter(x[i], y[i], color='red')
+            # organize the range to keep if fixed
+            plt.xlim(0, 4*np.pi)    
+            plt.ylim(-1, 1)
+
+        # creates the animation    
+        ani = animation.FuncAnimation(
+                    fig=plt.figure(), # init the figure
+                    func=animate,  # function call on each frame
+                    frames=len(x), # number of rames
+                    interval=20 # interval between frames in ms, the fps = 1000/interval
+                    )
+
+        # save as gif: there are other options, mp4, ...
+        ani.save(saveto + 'ex5-animation.gif', dpi=90)
+    
+    .. tab:: The plot
+
+        .. image:: ./figs/ex5-animation.gif
+            :width: 75%
+            :align: center
+    
+    .. tab:: The new commands
+
+        - the function **animate** takes the frame index *i* and plots the function and a red dot using the frame index *i* to get the element *i* of the x and y arrays. The **plt.clf()** clears the figure before each frame.
+
+        - the **FuncAnimation** defines the animation properties. The first parameter is the initial figure, then we set the function to call on each frame, the number of frames and the frame interval in miliseconds. For interval = 20, the fps = 1000/20 = 50.
+
+        - the last line saves the animation as a gif.
+
