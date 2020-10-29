@@ -269,6 +269,12 @@ Now let's start with an empty list and mix types as we add to the list:
 
     print('The list:', mylist)
 
+.. warning::
+    A list is not a mathematical vector, it does not support mathematical operations. For instance, the code ``x = [1, 2, 3]`` and ``y = 2*x`` **WILL NOT GIVE** ``[2, 4, 6]``, instead, it repeats the list twice to give ``[1, 2, 3, 1, 2, 3]``. This is useful to create long lists with a repeated pattern.
+
+    The mathematical vectors will be defined within the **numpy** package as ``x = np.array([1, 2, 3])``. In this case the call ``y = 2*x`` will return ``[2, 4, 6]``.
+
+
 Dictionaries
 """"""""""""
 
@@ -531,7 +537,7 @@ You should avoid importing like this:
     from math import *
 
 .. warning::
-    Notice that by calling ``import *`` or the other examples above you may cause conflicts since the sqrt function exists in more than one library. The correct way is shown next.
+    Notice that by calling ``from math import *`` or the other examples above you may cause conflicts since the sqrt function exists in more than one library. The correct way is shown next.
 
 The proper way to import a library is:
 
@@ -563,4 +569,20 @@ In practice, always try to use common alias for the libraries, for instance, we'
     import numpy as np
     import scipy as sp
     import matplotlib.pyplot as plt
+
+
+Reading/saving files and string manipulation
+--------------------------------------------
+
+To save data files it might be better use the **numpy** package. The discussion here will be more useful to read or save structured files. An important example would be to read a file with parameters for your code.
+
+Commands to discuss:
+
+- open and close, using with
+- read / readline
+- write / writelines
+- ``print(data,  file=open(filename, 'w'))``
+- find / replace
+- split into list
+- ...
 
