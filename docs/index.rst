@@ -32,6 +32,14 @@ These are the class notes for the course *Computational Physics*, lectured to th
          return(0);
       }      
 
+.. warning::
+   **TO DO!** I have skipped, but we need to discuss:
+
+   - Read/save files and string manipulation
+   - Plot images / matrices with: plt.imshow(...) or plt.pcolormesh(...)
+   - 3D plot with matplotlib
+
+
 
 Important links and info
 ------------------------

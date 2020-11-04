@@ -1,7 +1,7 @@
 Introduction to numpy
 =====================
 
-I'm writting this tutorial. For now check these:
+I'm writing this tutorial. For now check these:
 
 - https://numpy.org/devdocs/user/quickstart.html
 
