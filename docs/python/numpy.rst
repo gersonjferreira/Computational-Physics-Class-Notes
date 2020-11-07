@@ -325,9 +325,9 @@ Similarly, ``A**2`` is an element-wise power of the elements of *A*, while the a
 
     print('the actual matrix power is: \n', np.linalg.matrix_power(A, 2))
 
-    print('the determinant is: ', np.det(A))
+    print('the determinant is: ', np.linalg.det(A))
 
-    print('the inverse is: \n', np.inv(A))
+    print('the inverse is: \n', np.linalg.inv(A))
 
     # the matrix power call is long, so let's use an alias
     from numpy.linalg import matrix_power as mpow
