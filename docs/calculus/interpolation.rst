@@ -77,19 +77,16 @@ Applying this linear interpolation to the sine function above, we get this figur
             # init first point
             ys[0] = y[0]
 
-            # init new point index
-            j = 0
-            # loop over original points
+            # loop over sections set by original points
             for i0 in range(len(x)-1):
                 # init line equation at this section
                 a = (y[i0+1]-y[i0])/(x[i0+1]-x[i0])
                 b = (y[i0]*x[i0+1]-y[i0+1]*x[i0])/(x[i0+1]-x[i0])
-                # loop over new points within this section
-                while j < npts and xs[j] <= x[i0+1]:
-                    # apply linear interpolation
-                    ys[j] = a*xs[j] + b
-                    # move to next point
-                    j += 1
+                # extract xs indexes within x-section range
+                # i.e., points where x[i0] < xs < x[i0+1]
+                js = np.argwhere((xs > x[i0]) & (xs <= x[i0+1]))[:,0]
+                # apply linear interpolation over this range
+                ys [js] = a*xs[js] + b
             # return results
             return xs, ys
 
