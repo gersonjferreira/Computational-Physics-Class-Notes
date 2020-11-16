@@ -38,15 +38,12 @@ These are the class notes for the course *Computational Physics*, lectured to th
    - Read/save files and string manipulation
    - Plot images / matrices with: plt.imshow(...) or plt.pcolormesh(...)
    - 3D plot with matplotlib
-
-
+   - Basic calculus: contents sent by PDF, I'll update this page as soon as possible
 
 Important links and info
 ------------------------
 
-To access the class on MS Teams, use the code ``igor2v3``.
-
-All classes are recorded and available at the `MS Stream Channel Intro Fis Comp 2020 <https://web.microsoftstream.com/channel/2a236d9f-7c07-4410-94c7-537cd4af9427>`_
+To access the class on MS Teams, use the code ``igor2v3``. All classes are recorded and available at the `MS Stream Channel Intro Fis Comp 2020 <https://web.microsoftstream.com/channel/2a236d9f-7c07-4410-94c7-537cd4af9427>`_
 
 Topics
 ------
@@ -95,6 +92,7 @@ Let's split the main references into online tutorials, links to examples and boo
 
 About computational physics and related:
 
+#. Nicholas J. Giordano & Hisao Nakanishi - *Computational Physics*
 #. Tao Pang – *An Introduction to Computational Physics*
 #. Jos Thijssen – *Computational Physics*
 #. Philipp O. J. Scherer – *Computational Physics: Simulation of Classical and Quantum Systems*
@@ -126,6 +124,8 @@ Table of contents
    :maxdepth: 1
    :caption: Basic calculus
 
+   calculus/interpolation.rst
+   calculus/roots.rst
    calculus/integrals.rst
    calculus/derivatives.rst
 
