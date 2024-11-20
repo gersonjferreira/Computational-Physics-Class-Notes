@@ -1,0 +1,206 @@
+\section{PyPlot}
+\label{sec:PyPlot}
+
+\subsection{Installing PyPlot}
+
+To install \texttt{PyPlot}, first you need Python and Matplotlib. If you use Ubuntu Linux, run
+
+\begin{minted}{bash}
+ $ sudo apt-get update
+ $ sudo apt-get install python python-matplotlib
+\end{minted}
+
+Now you can install PyPlot. Start Julia and run: \mintinline[escapeinside=||]{julia}{|\julia| Pkg.add("PyPlot")}.
+
+\subsection{Using PyPlot}
+
+To use \texttt{PyPlot}, first you have to initialize it by calling: \mintinline[escapeinside=||]{julia}{|\julia| using PyPlot}. 
+
+\begin{example}{Using PyPlot}
+\begin{minted}{julia}
+using PyPlot
+x = linspace(-3pi,3pi,200);
+plot(x,  sin(x)./x, color="red", linewidth=2.0, linestyle="-");
+plot(x, -sin(x)./x, color="blue", linewidth=2.0, linestyle="--");
+xlabel("x");
+ylabel("f(x)");
+\end{minted}
+\end{example}
+
+Since the \texttt{PyPlot} package is an interface to Python's Matplotlib, one may use its extensive documentation\footnote{Matplotlib's documentation: \url{http://matplotlib.org/}}.
+
+
+\subsection{Most useful features and examples}
+
+\subsubsection{Calling non-ported functions from Matplotlib}
+
+PyPlot's documentation says that only the documented Python's \texttt{matplotlib.pyplot} API is exported to Julia. Nonetheless, other functions from Python's \texttt{PyPlot} can be accessed as
+
+\begin{center}
+ \texttt{matplotlib.pyplot.foo(...)} $\longrightarrow$ \texttt{plt[:foo](...)},
+\end{center} 
+where on the left we have Python's notation, and on the right Julia's.
+
+For instance, you can generate an histogram using:
+
+\begin{example}{Using non-ported functions from \texttt{Matplotlib}}
+\begin{minted}{julia}
+using PyPlot
+x = randn(100000);
+plt[:hist](x);
+xlabel("Random number");
+ylabel("Number of occurrences");
+\end{minted}
+\end{example}
+
+\subsubsection{Latex}
+
+It is very easy to use Latex with Julia's PyPlot package. Implicitly, PyPlot uses the LaTexStrings package\footnote{LaTeXStrings: \url{https://github.com/stevengj/LaTeXStrings.jl}}. Therefore on can use Latex commands on a string simply constructing it prepending with a \texttt{L}. For instance:
+
+\begin{example}{Using Latex}
+\begin{minted}[escapeinside=||,breaklines]{julia}
+ using PyPlot
+ 
+ x = linspace(0, 2pi, 100);
+ f = sin(x);
+ 
+ plot(x, f);
+ xlabel(L"$\theta$ [rads]");
+ ylabel(L"$\sin\theta$ [a.u.]");
+\end{minted}
+\end{example}
+
+This Latex notation can be used in all text elements of PyPlot.
+
+\subsubsection{Subplot}
+
+The \texttt{subplot} command allows you to break the plot window into a grid. Say that the desired grid has $N$ lines and $M$ columns, the command \mintinline{julia}{subplot(N, M, j)} specifies that you want to plot the next figure into the $j$-th element of the grid, with the elements sorted in a ``Z'' shape. Try the next example.
+
+\begin{example}{Using subplot}
+\begin{minted}[escapeinside=||,breaklines]{julia}
+ using PyPlot
+ 
+ x = linspace(-5pi, 5pi, 1000);
+
+ clf();
+ 
+ subplot(2,2,1);
+ plot(x, sin(x));
+ xlabel(L"$x$");
+ ylabel(L"$\sin(x)$");
+ 
+ subplot(2,2,2);
+ plot(x, cos(x));
+ xlabel(L"$x$");
+ ylabel(L"$\cos(x)$");
+
+ subplot(2,2,3);
+ plot(x, exp(-x.^2));
+ xlabel(L"$x$");
+ ylabel(L"Gaussian");
+ 
+ subplot(2,2,4);
+ plot(x, sin(x)./x); 
+ xlabel(L"$x$");
+ ylabel(L"$sinc(x)$");
+ 
+ tight_layout(); # adjust the subplots to better fit the figure
+
+\end{minted}
+\end{example}
+
+In the example above we are using Latex notation for the labels. The final command \textbf{tight\_layout(...)} allows you to adjust the subplots spacings to better adjust them within the figure. This avoids overlapping of the labels and plots.
+
+Even more control can be achieved with the command \textbf{subplot2grid(...)}, which we use in Fig.~\ref{fig:FourierSeries}, for instance. Here the shape is passed as a tuple $(N,M)$ to the first parameter, the second parameter takes the location of the desired plot an ordered pair $(i,j)$, where $0 \leq i \leq (N-1)$ and $0 \leq j \leq (M-1)$. The top-left corner grid element is $(i,j) = (0,0)$, and the bottom-right is $(i,j) = (N-1, M-1)$. The \texttt{subplot2grid} becomes more interesting as the next parameters allow you to set a \texttt{rowspan} and a \texttt{colspan} to span over cells. Check again Example \ref{ex:FourierSeries}.
+
+
+\subsubsection{Labels}
+
+\red{Relevant commands: text}
+
+\subsubsection{Legends}
+
+\red{Relevant commands: legend}
+
+\subsubsection{Other plot elements}
+
+\red{Relevant commands: annotate, arrow, axes, axis, axhline, axvline, contour, }
+
+\subsubsection{Saving into files (PNG, PDF, SVG, EPS, ...)}
+
+Figures are shown by default on screen as PNG. However, you can save it to files with many different formats using the \texttt{savefig(...)} command. Check the example:
+
+\begin{example}{Using subplot}
+\begin{minted}[escapeinside=||,breaklines]{julia}
+ using PyPlot
+ 
+ x = linspace(-5pi, 5pi, 1000);
+ f = sin(x);
+ plot(x, f);
+ xlabel(L"$\theta$ [rads]");
+ ylabel(L"$f(\theta) = \sin\theta$");
+ 
+ savefig("myplot.png");
+ savefig("myplot.pdf");
+ savefig("myplot.svg");
+ savefig("myplot.eps");
+\end{minted}
+\end{example}
+
+Please check the full documentation of the \texttt{matplotlib} for more details. You can choose the paper size, dpi, etc.
+
+\subsubsection{Animations}
+
+Here's an example of using Julia and \texttt{matplotlib} to create animations\footnote{Adapted from Andee Kaplan's presentation at \url{http://heike.github.io/stat590f/gadfly/andee-graphics/}}. The \texttt{PyCall} package is used to import the \texttt{animation} library from Python, since it is not natively implemented in \texttt{PyPlot}.
+
+\begin{example}{Animated plot}
+\begin{minted}[escapeinside=||,breaklines]{julia}
+using PyCall # package used to call Python functions
+using PyPlot
+
+# import the animation library
+@pyimport matplotlib.animation as anim
+
+# this function must plot a frame of the animation
+# the parameter t will be iterated by the matplotlib
+function animate(t)
+  # in this example we willl plot a Gaussian moving around
+  c = 3*sin(2pi*t);
+  x = linspace(-10, 10, 200);
+  y = exp(-(x-c).^2/2);
+
+  # clear the figure before ploting the new frame
+  clf(); 
+  
+  # plot the new frame
+  plot(x,y)
+
+  # for this basic usage, the returned value is not important
+  return 0
+end
+
+# matplotlib's FuncAnimation require an explicit figure object
+fig = figure();
+
+tspan = linspace(0, 5, 100); # will be used to iterate the frames
+
+# animation with a interval of 20 miliseconds between frames
+video = anim.FuncAnimation(fig, animate, frames=tspan, interval=20)
+
+# save the animation to a MP4 file using ffmpeg and the x264 codec
+video[:save]("anim.mp4", extra_args=["-vcodec", "libx264"])
+\end{minted}
+\end{example}
+
+
+
+
+
+
+
+
+
+
+
+
+

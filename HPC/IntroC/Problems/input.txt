@@ -1,0 +1,5 @@
+xmin	0	integration_limit
+xmax	3.1415	integration_limit
+npts	100	number_of_points
+power	2	calc_sin^power
+

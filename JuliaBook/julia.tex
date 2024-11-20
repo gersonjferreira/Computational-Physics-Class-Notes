@@ -1,0 +1,956 @@
+\definecolor{darkgreen}{rgb}{0.0, 0.5, 0.0}
+\def \julia {\textbf{\textcolor{darkgreen}{julia>}}}
+
+\chapter{Introduction to the Julia language}
+\vspace*{-1cm}
+\begin{flushright}
+\texttt{Hello world!}
+\end{flushright}
+
+\lettrine[nindent=0.35em,lhang=0.40,loversize=0.3]{J}{ulia} is a recently developed ($\sim 2012$) high-level computer language designed for high-performance numerical and scientific computing. The language has many advanced features that we will not cover on this introductory class. Please check the official website\footnote{Julia: \url{www.julialang.org}} and the Wikipedia\footnote{Wikipedia: \url{https://en.wikipedia.org/wiki/Julia_(programming_language)}} for more information. Here we will focus numerical calculus, Fourier transforms, systems of equations, eigenvalue problems, random number generators and statistics, and plotting figures, which constitutes the core of an introduction to scientific computing.
+
+Keep in mind that Julia is a high-level language. Its performance is typically worse than low-level languages like C by a factor of two. Still, this is an impressive performance for a high-level language. Therefore Julia combines the easy-to-use features of high-level languages like Matlab with the performance of low-level languages. Add to this the fact that Julia is open-source and has a variety of available and useful packages (\textit{e.g.:} ODE, PyPlot) for beginners and experts, and Julia becomes the ideal language for an introductory class.
+
+In this Chapter we will cover only the fundamental aspects of the Julia language as a introduction for the \textbf{students with zero or little experience} with computer languages. For the more experienced student, I suggest you check the Tutorials on the Learning section of Julia's webpage.
+
+
+\section{Installing Julia \red{(needs update)}}
+
+\subsection{JuliaBox}
+
+You don't even need to install Julia! \texttt{JuliaBox}\footnote{JuliaBox: \url{www.juliabox.org}} is an online server that allows you to run your Julia codes on a remote machine hosted by the the \texttt{Amazon WebServices}. To access this server you'll need a Google account. Once you are in, there will be an iJulia notebook interface running on Jupiter (iPython). You can easily upload, download and edit your codes. Moreover, you can sync your files with Google Drive or GIT.
+
+In JuliaBox you can run your code on the Amazon server for free up to six hours. After that your virtual machine will be shut down and you have to login again. 
+
+Unfortunately, my personal experience with JuliaBox is that it is not stable yet. It's still beta. The kernel seems to die often, but it could be a problem with my network (proxy?). Despite this, I encourage you to try it. Once this is stable, it will be a great tool.
+
+
+\subsection*{MS Windows and Apple OS X}
+
+I highly recommend you to use \texttt{Linux}. However, if you are stubborn enough I allow you to waste time with another OS. For MS Windows and Apple OS X (at least this one is UNIX-based) the installation follows usual procedures. Please visit the Download section on Julia's webpage to find the newest version of the installation files and instructions.
+
+\subsection*{Debian/Ubuntu/Fedora Linux}
+
+You can also find the installation files for Linux distributions on the Downloads section of Julia's webpage. However, one of the great advantages of using Linux is the advanced packaging system that helps you keep your software always up to date. Many third-party applications will have PPA repositories for Ubuntu Linux. So here I'll quick teach you how to use them.
+
+If you are new to Linux. Try Ubuntu. Their PPA repositories are great.
+
+\subsubsection*{Ubuntu Linux}
+
+Julia's PPA repository
+\footnote{Julia's PPA: \url{https://launchpad.net/~staticfloat/+archive/ubuntu/juliareleases}}
+is \texttt{ppa:staticfloat/juliareleases}. To add it to your list of repositories and install Julia, please open the Terminal and follow the commands below. Please read the output of each command as it may request you to accept the changes.
+
+\begin{example}{Installing Julia in Ubuntu Linux}
+ \label{ex:InstallJuliaLinux}
+ \begin{minted}[]{bash}
+  sudo apt-add-repository ppa:staticfloat/juliareleases
+  sudo apt-get update # this command updates the package list
+  sudo apt-get install julia
+ \end{minted}
+\end{example}
+ 
+Depending on the Ubuntu version you are using, you may also need to add the PPA for Julia's dependent packages: \texttt{ppa:staticfloat/julia-deps}.
+
+That is it! If all goes well, Julia is already installed. If there is a new version and you want to upgrade, go again to the terminal and run:
+
+\begin{example}{Upgrading your installed software}
+\begin{minted}[]{bash}
+ $ sudo apt-get update
+ $ sudo apt-get upgrade
+\end{minted}
+\end{example}
+
+As a suggestion for the new Linux users, there are a few graphical interfaces for the APT packaging system. I recommend you to use \texttt{Synaptic}. If it is not already installed, simply update your package list as in the examples above, and run \texttt{sudo apt-get install synaptic}.
+
+If you are new to Linux, get ready to be comfortable using the Terminal as it makes your life much easier. For instance, many of the commands above are probably new to you. To learn more about them, you can check the \texttt{man-pages} on the Terminal. Please check and read the content of the commands below (to exit press \texttt{q}).
+
+\begin{example}{Using the man-pages}
+\begin{minted}[]{bash}
+ $ man sudo # execute a command as another user
+ $ man apt-get # APT package handling utility -- command-line interface
+ $ man julia # launch a Julia session
+ $ man synaptic # graphical management of software packages
+ $ man man # an interface to the on-line reference manuals
+ $ man bash # GNU Bourne-Again SHell
+\end{minted}
+\end{example}
+
+\subsubsection*{Debian Linux}
+
+Unfortunately you cannot find Debian packages of Julia in their main webpage. In Debian Jessie (stable) repository you will find an old version of Julia (0.3.2 the last time I've checked). To get the newest version of Julia, you will need Debian Stretch (testing) or Sid (unstable). It could be tricky to install a Stretch package in Jessie, so I don't recommend this. If you use Debian Jessie, the best choice is to use the Generic Linux binaries from Julia's webpage Download section.
+
+Here's my suggestion on how to install the \textbf{Generic Linux Binaries}:
+
+First go to Julia's webpage Download section and get the file for the 64bit or 32bit version, depending on your computer architecture. The file name will be something like \texttt{julia-0.4.3-linux-x86\_64.tar.gz}. The \texttt{.tar.gz} extension indicates a compressed file (like a zip file).
+You may save it to your \texttt{Downloads} folder.
+
+Open the Terminal. Next we will extract the files from the \texttt{.tar.gz} file and move it to a better location. Follow these commands:
+
+\begin{example}{Julia: manual installation, part 1}
+\begin{minted}[]{bash}
+ # Change Directiory to where you have saved the .tar.gz file:
+ $ cd Downloads
+ # extract the contents:
+ $ tar -xzf julia-0.4.3-linux-x86_64.tar.gz
+ # list the files within the current directory:
+ $ ls 
+\end{minted}
+\end{example}
+
+The last command, \texttt{ls}, will list the files on the directory. Among other personal files of yours, you'll see the \texttt{.tar.gz} file and a new folder with a name similar to \texttt{julia-a2f713dea5}. Let's now move it to a better location, back to the Terminal:
+
+\begin{example}{Julia: manual installation, part 2}
+\begin{minted}[escapeinside=||]{julia}
+ # let's move it to a different place. The dot makes it a hidden folder
+ $ mv julia-a2f713dea5 |$\sim$|/.julia
+ 
+ # open the .bashrc with your favorite text editor
+ $ gedit |$\sim$|/.bashrc
+ 
+ # to add Julia's binary to the path where the system looks for binaries,
+ # add the following line at the end of the file
+ export PATH=$PATH:$HOME/.julia/bin
+ # save the file and close the text editor 
+\end{minted}
+\end{example}
+
+Great! If all goes well, close your Terminal and open it again. Every time the Terminal (BASH) starts, it runs the content of \texttt{.bashrc}. The line we have added to this file tell the system to search Julia's folder for binaries. Therefore, now you can start Julia in bash running \texttt{\$ julia}.
+
+\subsection{Juno IDE}
+
+Juno\footnote{Juno: \url{junolab.org}} is a powerful IDE (Integrated Development Environment) built specifically for Julia. Please check its webpage for installation instructions for MS Windows, Apple OS X, and Linux. Unfortunately, up to now there's no official repository for Juno on Linux, so you have to install it manually.
+
+\subsection{iJulia}
+
+iJulia\footnote{iJulia: \url{github.com/JuliaLang/IJulia.jl}} provides the Jupiter interactive environment for Julia (similar to iPhyton). This is equivalent to the interface of JuliaBox, but this one runs locally on your computer. To install it, go to the Terminal, start Julia's command line interface and run:
+
+\begin{example}{Installing iJulia}
+\begin{minted}[escapeinside=||]{julia}
+ | First, open the Terminal and start Julia |
+ $ julia
+ | Next, install iJulia with the Pkg.add command |
+ |\julia| Pkg.add("IJulia")
+\end{minted}
+\end{example}
+
+To start and use iJulia, follow these commands:
+
+\begin{example}{Using iJulia}
+\begin{minted}[escapeinside=||]{julia}
+ | First, open the Terminal and start Julia |
+ $ julia
+ | Next, start iJulia |
+ |\julia| using IJulia; notebook();
+\end{minted}
+\end{example}
+
+The commands above will start the iJulia server, which you have to access via you Internet browser at \url{127.0.0.1:8888}.
+
+\section{Trying Julia for the first time}
+
+First of all, I'm old fashion. So I prefer to run my codes on the command line interface, while I edit my code using Emacs\footnote{Emacs: \url{http://www.gnu.org/software/emacs/tour/}.\\To install Emacs on Ubuntu: \texttt{sudo apt-get install emacs}.}. Emacs can be complicated for a beginner, while it becomes a incredible tool as you get experience. For now, you can use simpler text editors like \texttt{gEdit} or \texttt{Kate}. Of course, if you are using Juno, JuliaBox, or iJulia interface, you won't need a text editor. But first let's learn how to get around the command line interface, and later on we'll start with the codes and scripts.
+
+\subsection{The command line interface}
+
+Open the Terminal and start Julia.
+
+\begin{example}{Julia's initial screen}
+\begin{minted}[mathescape]{julia}
+   _       _ _(_)_     |  A fresh approach to technical computing
+  (_)     | (_) (_)    |  Documentation: http://docs.julialang.org
+   _ _   _| |_  __ _   |  Type "?help" for help.
+  | | | | | | |/ _' |  |
+  | | |_| | | | (_| |  |  Version 0.4.2 (2015-12-06 21:47 UTC)
+ _/ |\__'_|_|_|\__'_|  |  Official http://julialang.org release
+|__/                   |  x86_64-linux-gnu
+
+julia> 
+\end{minted}
+\end{example}
+
+The first thing you see is a message on how to ask for help. Very encouraging! Since we don't know anything, let's ask for help. Follow the instruction on the screen. Type ``\texttt{?help}'' for help. Great! From the command line there's always an easy access to a short documentation that you can use to check what an specific Julia command does and what parameters does it take. 
+
+Try some simple commands:
+
+\begin{example}{Simple commands}
+\begin{minted}[escapeinside=||,mathescape]{julia}
+|\julia| 2+2
+|\julia| sin(30)
+|\julia| sin(30*pi/180)
+|\julia| sin(30pi/180)
+|\julia| pi
+|\julia| a = 2^4;
+|\julia| a
+|\julia| println("The value of a is ", a);
+|\julia| ?println
+\end{minted}
+\end{example}
+
+Above you can see that Julia (as any other computing language) takes angles in radians, there's a pre-defined constant for $\pi$, the exponentiation is done with the circumflex symbol ($x^y$ = \texttt{x\textasciicircum y}), you can assign value to variables with $=$, print text and values on the screen with \texttt{println}, and if you finish a line with a semicolon (\texttt{;}), it suppresses the output. That's a good start.
+
+In the examples above, note that you don't need to type the multiplication symbol \texttt{*} between numbers and variables. Julia understands the implied multiplication. This is a nice trick to keep your expressions short and easy to read.
+
+Let's try another basic set of commands:
+
+\begin{example}{Functions and memory use}
+\begin{minted}[escapeinside=||,mathescape]{julia}
+|\julia| a = 0; # defines and attributes value to the variable
+|\julia| f(x,a) = exp(-x/a)sin(x); # defines $f(x,a) = e^{-x/a}\sin(x)$
+|\julia| f(1,1) # calculates the function for the specific values
+|\julia| whos() # prints the memory use
+|\julia| workspace(); # cleans the user-defined varibles
+|\julia| f(1,1) # gives an error, since f(x,a) is not defined anymore...
+|\julia| whos() # ... as you can see here.
+\end{minted}
+\end{example}
+
+Here we are defining a function \texttt{f(x,a)} that takes two parameters. Note that even tough we have set the variable \texttt{a=0} on the previous line, the function definition does not use this value, since it belongs to a different scope.
+
+The commands \texttt{whos()} and \texttt{workspace()} are very helpful to keep track of memory use, and to clean all user-defined values and start again when needed.
+
+\subsubsection{Essential commands, auto-complete, and command history}
+
+Here's a list of other essential commands to keep in mind:
+
+\begin{itemize}
+ \item Everything that follows \texttt{\#} is a comment and it is ignored;
+ \item To exit Julia's command line interface: \texttt{quit()}, or \texttt{exit()}, or press \texttt{CTRL+D} (= \texttt{\textasciicircum D}). As usual, let's use the circumflex symbol \texttt{\textasciicircum} to refer to \texttt{CTRL} key for short notation.
+ \item To interrupt a computation, press \texttt{\textasciicircum C};
+ \item Press \texttt{;} at an empty line to go back to \texttt{BASH} temporally.
+ \item To run a script file, run \texttt{include("file.jl")}. Always use the \texttt{.jl} extension so your text editor recognizes that your are writing a Julia script;
+ \item Use the \texttt{TAB} key to complete what you are typing (or a list of suggestions). Try to type "\texttt{in}" and press \texttt{TAB} twice, you'll see a list of possible commands that start with "\texttt{in}". Continue the command pressing \texttt{c} to form "\texttt{inc}" and press \texttt{TAB} again. It's magic!
+ \item You can go through your \textbf{commands history} pressing the up and down arrows of your keyboard. Also, you can search the command history pressing \texttt{\textasciicircum R} and typing any part of the command you want to recall.
+\end{itemize}
+
+
+\subsection{Using scripts}
+\label{sec:scripts}
+
+The command line interface is great for quick calculations, test codes, plot figures, etc. However, in practice we should always have our code stored in a file somewhere. This is the script. While in low-level compiled languages we refer to the codes as the ``source code'', for high-level interpreted languages, it is called a ``script''.
+
+There's no secret here. Through the classes we will learn Julia commands and structures, try some codes and solve some problems. A script file is just a text file with the sequence of commands you want to run. Julia scripts should end with a \texttt{.jl} extension, so that your script editor recognizes it is a Julia script. In Linux, I recommend the beginners to use one of these editors: Kate or gEdit. The first is part of the KDE ensemble, while the second belongs to Gnome. For those with more experience, try to learn Emacs.
+
+In the next section we will start to write more complicated functions, so I invite you to code them in a script file instead of the command line as we were doing so far. Simply open your favorite editor, type the code, and save it with the \texttt{.jl} extension. Let's say your file is \texttt{script.jl}. There's two ways to run the script:
+
+\begin{enumerate}
+ \item In the Terminal, start Julia and run: \mintinline[escapeinside=||]{julia}{|\julia| include("script.jl");}
+ \item In the Terminal, do not start Julia! From the shell, run: \texttt{\$ julia script.jl}
+\end{enumerate}
+
+What's the difference between these two cases?
+
+
+\subsection{Other interfaces}
+
+During the classes we will use mostly the command line interface and scripts. Therefore I will not cover here a guide to use the other possible interfaces: JuliaBox, Juno IDE, and iJulia. These are easy-to-use interfaces, so after learning about the command line and scripts, you will probably have no difficult using the others.
+
+
+
+\section{Constants and variable types}
+
+Julia comes with a few predefined mathematical constants:
+
+\begin{itemize}
+ \item $\pi$ = \texttt{pi} = $3.1415926535897...$;
+ \item $e$ = \texttt{e} or \texttt{eu} = $2.7182818284590...$, Euler's number, base for the natural logarithm;
+ \item For complex numbers, use \texttt{im} for the imaginary part. For example: \texttt{z = 5 + 3im};
+ \item True and false constants are \texttt{true=1}, and \texttt{false=0};
+\end{itemize}
+
+The variable types in Julia are dynamic. This means that you don't have to declare it beforehand. For instance:
+
+\begin{example}{Variable types}
+\begin{minted}[escapeinside=||,mathescape]{julia}
+|\julia| a = 8 
+|\julia| typeof(a) # will tell you that "a" is 64bit integer
+|\julia| sizeof(a) # used memory in bits
+|\julia| a = 8.0
+|\julia| typeof(a) # now "a" is a 64bit floating-point number
+|\julia| sizeof(a)
+|\julia| a = 8.0 + 3.0im
+|\julia| typeof(a) # is a complex floating-point number
+|\julia| sizeof(a)
+|\julia| a = 8 + 3im
+|\julia| typeof(a) # is an integer floating-point number
+|\julia| sizeof(a)
+|\julia| a = true
+|\julia| typeof(a) # is a Boolean
+|\julia| sizeof(a)
+\end{minted}
+\end{example}
+
+The difference between the types is how the variable is stored in memory. A floating-point number is the computer version of the Real numbers\footnote{For more details, check Wikipedia's entry on the double precision (64bits) floating-point numbers: \url{https://en.wikipedia.org/wiki/Double-precision_floating-point_format}, and a general discussion on floating-point numbers \url{https://en.wikipedia.org/wiki/Floating_point}.}. \texttt{Float64} means that Julia is using the double precision format (64 bits), which uses one bit for the sign, 11 bits for the exponent, and 52 bits for the fraction. Since 1 byte = 8 bits, each \texttt{Float64} variable will need 8 bytes memory. For instance, if you have a $100\times 100$ real matrix, there will be $100^2$ \texttt{Float64} numbers to store, consuming 80.000 bytes = 80 kB. 
+You can check the memory use of any variable with the command \texttt{sizeof(...)}.
+Evidently, a 64 bit integer, \textit{e.g.} Julia's \texttt{Int64}, also needs 8 bytes of memory. So, what's the advantage of having both \texttt{Float64} and \texttt{Int64} types of variables? I'll leave this to you as a problem.
+
+Note that the complex variable takes twice the memory of a real or integer variable. It has to store both the real and imaginary part. Boolean variables uses only a single bit! Since it can be only true or false, a single bit suffices.
+
+\subsection{Assertion and Function Overloading}
+
+Type assertion is particularly useful when defining functions. It can be used to assure that the functions receives an argument of a certain type. For instance, let's define a function that calculates the factorial using a loop:
+
+\begin{example}{Factorial function with assertion}
+\label{ex:fact}
+\begin{minted}[escapeinside=||,mathescape]{julia}
+ function fact(n::Int64)
+    res = 1; # initialize the result as 1
+    for i=n:-1:1 # loop the variable i from N to 1 in steps of -1
+        res = res*i; # since $n! = n\cdot(n-1)\cdot(n-2)\cdots(1)$
+    end # end loop
+    return res; # return the result
+ end
+\end{minted}
+\end{example}
+
+In the first line the argument of the function \mintinline{julia}{fact(n::Int64)} is declared as an \texttt{Int64}. If you try to call this function as \texttt{fact(4)}, you will get the correct result, 24. But if you call \texttt{fact(4.0)}, it fails. The function is not defined for an arbitrary argument. 
+
+If you have a function that for different types of parameters may take different forms, you can use \textbf{function overloading}. This is an extremely useful feature of modern computer languages. For instance, the factorial of a real number can be defined via the Riemann's $\Gamma$ function, 
+
+\begin{align}
+ \Gamma(n) =& (n-1)!, \;\; \text{ for } \; n \in \mathbb{Z}^+, \\
+ \Gamma(t) =& \int_0^\infty x^{t-1} e^{-x} dx, \;\; \text{ for } \; t \in \mathbb{R}.
+\end{align}
+
+We, humans, use the same letter $\Gamma$ for these functions. But the expression used to calculate the result depends on the parameter being integer or real. Function overloading is the computer language way of making the decision between the two forms of $\Gamma$ above. Check the next example.
+
+\begin{example}{Function Overloading}
+\begin{minted}[escapeinside=||,mathescape]{julia}
+ function Gamma(n::Int64)
+    return fact(n-1);
+ end
+ 
+ function Gamma(t::Float64)
+    println("We'll learn how to calculate numerical integrals later...");
+ end
+\end{minted}
+\end{example}
+
+Try to define all these functions in Julia. Simply copy and paste the code from here. Now, if you call \texttt{Gamma(5)} the result will be 24 again. But for \texttt{Gamma(5.0)} you will get the message above from \texttt{println}. Simply call \texttt{Gamma} with no parameters or parenthesis, and you see the message ``\texttt{Gamma (generic function with 2 methods)}''. The different methods are the different implementations of \texttt{Gamma} with distinct type or number of parameters.
+
+Please note that this is a simple illustrative example. In practice Julia has built-in functions to calculate both the factorial and Riemann's $\Gamma$. Built-in are always more efficient.
+
+\subsection{Composite Types (struct)}
+
+Composite types are equivalent to the \texttt{structs} in C language. It is usually useful when you want to store different information about an object in a single variable.
+
+Since we are taking a Computation Physics class... let's exemplify the composite types as a way to store the position and momenta of particles.
+
+\begin{example}{Composite Types: particle position and momenta}
+
+Say that you need to store the position $(x,y)$ and momenta $(p_x, p_y)$ of all habitants of flatland\cite{abbott2015flatland}. We can define a type of variable that we choose to name ``Particle'':
+
+\vspace*{0.3cm}
+
+\begin{minted}[escapeinside=||,mathescape]{julia}
+type Particle
+  x::Float64
+  y::Float64
+  px::Float64
+  py::Float64
+end
+\end{minted}
+
+Now we can create many particles calling
+
+\begin{minted}[escapeinside=||,mathescape]{julia}
+q1 = Particle(0.0, 0.0, 0.0, 0.0); # resting at origin
+q2 = Particle(10.0, 10.0, -1.0, -1.0); # in a collision course with q1
+\end{minted}
+
+To avoid the collision, let's update the position of particle $q_1$:
+
+\begin{minted}[escapeinside=||,mathescape]{julia}
+q1.x = 1; # now q1 is still at rest, but now on (x,y) = (1,0)
+\end{minted}
+\end{example}
+
+In the example above we have defined a new type of variable (\texttt{Particle}), and we create two variables of this type representing particles $q_1$ and $q_2$. The parameters (position and momenta) are the ``fields'' of this new variable type. The parameters passed to these variables when defining $q_1$ and $q_2$ are called the ``initialization''. Once the variables exist, you can access and modify its contents using the construct \texttt{variable.field}, as in the example where we update the position of particle $q_1$.
+
+This is a silly example, but eventually we will use this to help us solve the motion of planets using Newtonian dynamics.
+
+Instead of the declaring the composite type using the \texttt{type} keyword, you could also work with the \texttt{immutable}, \textit{i.e.}
+\mintinline[escapeinside=||]{julia}{immutable Particle |$\cdots$| end}. Immutable types work as constants, they cannot be modified. The main difference between ``mutable'' and immutable types is that the first is passed by reference to a function, while the second is passed by copy\footnote{If you are a beginner, you probably don't know what ``passing by reference/copy'' means. Don't worry, we'll get to that.}.
+
+\subsection{Tuples}
+
+In mathematics, a tuple is a ordered list of elements. For instance, a vector $\bm{r}$ can be written as 3-tuple: $(x, y, z)$. Julia's documentation describes this type of data as an abstraction of the arguments of a function.
+
+\begin{example}{Tuples: square root}
+\begin{minted}[escapeinside=||,mathescape]{julia}
+function squareroot(x::Number)
+   return (+sqrt(x), -sqrt(x)) # returns a tuple
+end
+
+sols = squareroot(9);
+
+println("The square roots are ", sols[1], " and ", sols[2]);
+
+println("The number of square roots is ", length(sols));
+
+sols[1] = 0; # will return an error
+\end{minted}
+\end{example}
+
+In the example above, while the \texttt{sqrt($\cdots$)} native command returns only the positive square root, our example function returns a tuple with all square roots. The tuple is stored in the variable \texttt{sols}, and each value can be accessed via the construct \texttt{sols[1]}, \texttt{sols[2]}, $\cdots$ \texttt{sols[i]} $\cdots$ \texttt{sols[n]}, where the number of elements in the tuple can be checked with the \texttt{length} command. In the simple example above, we will always have two entries in the tuple. However, some codes may return a tuple of an arbitrary number of entries. In this case you may use the command \texttt{length} to check the number of elements.
+
+In Julia, a tuple is an immutable type: you cannot change its contents, and it will be passed to a function by copy. Therefore tuples are appropriated when you need to pass vector or matrix parameters by copy, instead of by reference. Apart from this, they are equivalent to arrays.
+
+\subsection{Arrays: vectors and matrices}
+
+As we have seen above, mathematically and array is a tuple. In Julia an array is a mutable tuple. To distinguish these two, tuples are defined by parenthesis as \mintinline{julia}{pos = (x,y)}, while arrays are set by square brackets as \mintinline{julia}{pos = [x, y]}. Essentially, both tuples and arrays could be used to represent vectors and matrices. However, when we are working with vectors and matrices, we will probably need to update their values along the calculation. Therefore we need a mutable type: the array.
+
+Let's define a vector and a matrices and try some common operations.
+
+\begin{example}{Arrays: vectors and matrices}
+\begin{minted}[escapeinside=||,mathescape]{julia}
+  veclin = [1 2 3] # this is a line vector $(1 \times 3)$
+  veccol = [1; 2; 3] # this is a column vector $(3 \times 1)$ 
+  matA = [4 5 6; 7 8 9; 10 11 12] # a $3 \times 3$ matrix
+  matB = [3 2 1; 6 5 4; 9 8 7] # another $3 \times 3$ matrix
+  
+  matA*veccol # $(3 \times 3) \cdot (3 \times 1) = (3 \times 1)$
+  
+  veclin.' # transpose the vector
+  veccol' # conjugate transpose the vector
+  
+  matA' # conjugate transpose the matrix
+  
+  inv(matA) # calculates the inverse
+  
+  matA*matB # mathematical product of the matrices
+  
+  matA.*matB # direct element by element product
+\end{minted}
+\end{example}
+
+Run the example above line by line and check the outputs to understand what each command does. You will see that there's no difference between the conjugate and the transpose conjugate here, because we are dealing with real values. Try defining a complex matrix or vector and check again the difference between these two commands.
+
+There's a lot more you can do with vectors and matrices of course. We'll learn more tricks as we go along. For instance, a nice trick to construct matrices is the \texttt{comprehension} construct that we present in Section \ref{sec:comprehensions}. Other relevant commands that we may use later on are:
+
+\begin{itemize}
+ \item \texttt{zeros(n)}: creates an array of zeros with $n$ elements;
+ \item \texttt{zeros(n,p)}: creates a $n\times p$ matrix with all elements set to zero;
+ \item \texttt{ones(n)}, and \texttt{ones(n,p)}: equivalent to \texttt{zeros}, but all elements are set to 1;
+ \item \texttt{eye(n)}: creates the identity matrix of order $n$. This is different than \texttt{ones(n,n)};
+ \item \texttt{rand(n)}, and \texttt{rand(n,p)}: array or matrix of random values uniformly distributed between $[0,1)$;
+ \item \texttt{randn(n), and \texttt{randn(n,p)}}: equivalent to \texttt{rand}, but with a standard normal distribution (mean value $=0$, and standard deviation $=1$);
+ \item \texttt{linspace(start, stop, n)}: creates a range from \texttt{start} to \texttt{stop} with \texttt{n} elements. To convert the range into an array, use the \texttt{collect} command;  
+ \item \texttt{norm(v)}: returns the norm of vector $v$;
+ \item \texttt{cross(x,y)}: calculates the cross product $x \times y$;
+ \item \texttt{diagm(v[, k])}: constructs a matrix with the $k$-th diagonal set to the vector $v$ and all other elements to zero;
+ \item \texttt{trace(M)}: returns the trace of the matrix $M$;
+ \item \texttt{det(M)}: returns the determinant of the matrix $M$;
+ \item \texttt{inv(M)}: inverse of the matrix $M$;
+ \item \texttt{eig(M)}: calculate the eigenvalues and eigenvectors of the matrix $M$;
+\end{itemize}
+
+\subsubsection{Indexing an array or matrix}
+
+To access or change the value of a matrix or array element, use \texttt{matA[i,j]} and \texttt{veclin[i]}, respectively. The first access the element $(i,j)$ of matrix \texttt{matA}, the second access the element $i$ of vector \texttt{veclin} from the example above. You may also use ranges to access multiple elements. Check the example:
+
+\begin{example}{Indexing arrays and matrices}
+\begin{minted}[escapeinside=||,mathescape]{julia}
+# creates a random $6 \times 6$ matrix. Check the output
+M = randn(6,6)
+
+M[2,3] # returns element of the 2nd row, 3rd column
+
+M[2:4, 5] # returns rows 2 to 4 in column 5
+
+M[:, 2] # returns column 2
+
+M[3, :] # returns row 3
+
+M[1, end] # returns element in the last column of row 1
+\end{minted}
+\end{example}
+
+\subsubsection{Concatenation}
+
+Array concatenation in Julia follow the vector and matrix constructions as shown in the example below. Additionally, one may also explicitly call the \texttt{*cat}-functions: \texttt{cat}, \texttt{vcat}, \texttt{hcat}, \texttt{hvcat}.
+
+In the next example we start with a vector $x$ and add more elements to it, either increasing its size, or transforming it into a matrix. Please check carefully the outputs of each line to understand the different types of concatenations.
+
+\begin{example}{Concatenation}
+\label{ex:concatenation}
+\begin{minted}[escapeinside=||,mathescape]{julia}
+x = rand(3); # initialized as a column vector 3x1
+
+# repets x and adds two more elements, making it 5x1
+y = [x; 10; 20];
+
+# the line above is equivalent to the vcat: vertical concatenation
+y = vcat(x, [10; 20]);
+
+# creates another 5x1 vector
+z = rand(5); 
+
+# creates a 5x2 matrix setting $y$ as the first column and $z$ as the second
+m = [y z]; 
+
+# the line above is equivalent to hcat: horizontal concatenation
+m = hcat(y, z);
+\end{minted}
+\end{example}
+
+Keep in mind that concatenation can be useful to store results in a list of initially unknown size. You can concatenate new results of some calculation into the list as needed. However, this is not efficient for large vectors, in which case it is better to known the size of the vector and initialize it beforehand.
+
+In the next example we calculate the average and standard deviation of a list of random numbers as a function of the number of random values sampled. This is not the most efficient way to calculate and store the results, but exemplifies an interesting way of using concatenation.
+
+\begin{example}{Concatenation to store results on demand}
+\label{ex:concatenationstore}
+\begin{minted}[escapeinside=||,mathescape]{julia}
+# using the PyPlot package that will be introduced in Section $\text{\ref{sec:PyPlot}}$
+using PyPlot 
+
+# initialize empty arrays of Float64 to store the resuts
+average = Float64[]; 
+stddev  = Float64[];
+
+n = 1; # initialize counter of sampled random numbers
+# the average of a uniform random distribution should be 0.5
+# let's run the loop until we reach this limit
+while length(average)==0 || abs(average[end]-0.5) > 1e-6
+  n += 1; # increment the counter
+  list = rand(n); # sample a new list
+  average = [average; mean(list)]; # concatente new average to the list
+  stddev  = [stddev;  std(list)]; # and the same for the std. deviation
+end
+
+# plot the average and standard deviation as a function of 
+# the number of sampled points
+subplot(211)
+plot(average)
+
+subplot(212)
+plot(stddev)
+\end{minted}
+\end{example}
+
+
+
+\subsection{Scope of a variable}
+
+The scope of a variable refers to the region of the code where the variable is accessible. You may, for instance, define two functions of $x$, say $f(x)$ and $g(x)$. Here $x$ is suppose to be a free variable, being assigned to a value only when you call the functions; \textit{e.g.} if you call $f(3)$ the code inside the function $f(x)$ uses $x=3$. From a mathematical point of view this is quite obvious, right?
+
+What about for a computer? Is it obvious? Remember that a computer does whatever you code him to do. Therefore the definition of the scope of a variable is extremely important. Otherwise you and the computer could have some misunderstandings. Check the example:
+
+\begin{example}{Scope of a variable}
+\label{ex:scope}
+\begin{minted}[escapeinside=||,mathescape]{julia}
+x = 3; # global definition of x
+
+# definition of f(x): here x is local. The scope is the function.
+f(x) = exp(-x)sin(x);
+
+# definition of g(y): here x takes the global value, y is local.
+g(y) = sin(x*y);
+
+# definition of h(y): x, dx, and ans are local variables
+function h(y)
+  x = 0;
+  dx = 0.01;
+  res = 0;
+  while x <= y
+     res = res + x*dx;
+     x = x + dx;
+  end
+  return res;
+end
+
+x # check the value of x
+
+f(0) # will return 0
+f(1) # will return 0.3095598756531122
+f(x) # will return 0.00702595148935012
+h(2) # will return 1.99
+
+x # still has the same value. Calling h(2) didn't change it.
+
+g(10*pi/180) # will return 0.49999999999999994
+
+x = pi/180;
+
+f(x) # now returns 0.017150447238797207
+g(30) # returns 0.49999999999999994
+h(2) # still returns 1.99
+\end{minted}
+\end{example}
+
+Do you understand all outputs of the example above? Please try to follow what happens at each line, and what value of $x$ is used. The variable $x$ is first initialized in the global scope ($x=3$). However, when we define a function, its arguments are threated as local variables. Therefore the variable $x$ that appears in $f(x)$ is not the same as the global $x$. It has the same name, but refers to a different scope. Check Problem \ref{prob:scope}.
+
+Besides the functions, new scopes are initiated every time you start a new code block; \textit{e.g.} \texttt{for} and \texttt{while} loops.
+
+\section{Control Flow: if, for, while and comprehensions}
+
+In a vector oriented language one should always try to avoid using loops (\textit{e.g.:} \texttt{for}, \texttt{while}). Also, it's always better to avoid conditional evaluations (\texttt{if}). But it is not always possible. So let's check how to use them in Julia.
+
+\subsection{Conditional evaluations: if}
+
+The definition of the \texttt{if} construction follows the common \texttt{if-elseif-else} syntax:
+
+\begin{minted}{julia}
+if x < y
+  println("x is less than y")
+elseif x > y
+  println("x is greater than y")
+else
+  println("x is equal to y")
+end
+\end{minted}
+
+As usual, it checks if the first statement is true (\texttt{x < y}), if so, it runs the first block. Otherwise it goes to the second condition (\texttt{elseif}). If all conditions are false, it runs the \texttt{else} block. You may have many \texttt{elseif} conditions if you need it... or none. Both \texttt{elseif} and \texttt{else} blocks are optional.
+
+One can also use Short-Circuits (AND: \texttt{\&\&}, OR: \texttt{||}). The \texttt{\&\&} is the boolean AND operator. For instance, \texttt{(testA \&\& testB)} will return TRUE only if both \texttt{testA} \textbf{and} \texttt{testB} are TRUE, and it returns FALSE otherwise. For efficiency it first evaluate \texttt{testA}, if it returns FALSE, Julia does not have to evaluate \texttt{testB}. Do you agree?
+
+What about the OR operator \texttt{||}? What is the outcome of \texttt{(testA || testB)} for different results of \texttt{testA} and \texttt{textB}?
+
+Write and run the following code. It uses a \texttt{comprehension} to create a matrix. We'll learn about \texttt{comprehensions} later, but you can probably guess what it does just by reading the code. Try to understand the content of the matrices \texttt{Tand} and \texttt{Tor}.
+
+\begin{example}{Truth tables}
+\label{ex:truthtable}
+\begin{minted}[mathescape]{julia}
+tf = [true; false];
+
+Tand = [ x && y for x in tf, y in tf ]
+
+Tor = [ x || y for x in tf, y in tf ]
+\end{minted}
+\end{example}
+
+\subsection{Ternary operator \texttt{?:}}
+
+The ternary operator (\texttt{a ? b : c}) is simply a short syntax for \texttt{if} statements that can be put in a single line. Here \texttt{a} is the boolean test, \texttt{b} is the code to run if \texttt{a} is TRUE, and \texttt{c} is the code if \texttt{a} is FALSE. For instance, the next example shows two different implementation of a function that calculates the absolute value of $x$.
+
+\begin{example}{Ternary operator: absolute value}
+\label{ex:ternary}
+\begin{minted}[mathescape]{julia}
+
+function absolute(x)
+  if x >= 0
+    return x
+  else
+    return -x
+  end
+end
+
+ternaryabsolute(x) = (x>=0) ? x : -x;
+\end{minted}
+\end{example}
+
+\subsection{Numeric Comparisons}
+
+Comparison operators follow standard notation:
+
+\begin{itemize}
+ \item Equality \texttt{a == b}, tests if \texttt{a} is equal to \texttt{b};
+ \item Inequality \texttt{a != b}, tests if \texttt{a} and \texttt{b} are different;
+ \item Less than: \texttt{a < b};
+ \item Less than or equal to: \texttt{a <= b};
+ \item Greater than: \texttt{a > b};
+ \item Greater than or equal to: \texttt{a >= b};
+\end{itemize}
+
+It's possible to compare numbers to infinity (\texttt{Inf} $ = \infty$), or undefined results (\texttt{NaN} = not a number). For instance, \texttt{(1/0 == Inf)} returns TRUE, and \texttt{(0/0 == NaN)} also returns TRUE. Other comparisons can be made with the help of predefined functions:
+
+\begin{itemize}
+ \item \texttt{iseven(a)}, returns TRUE if \texttt{a} is even;
+ \item \texttt{isodd(a)}, returns FALSE if \texttt{a} is odd;
+ \item Other useful tests: \texttt{isinteger(a)}, \texttt{isnumber(a)}, \texttt{isprime(a)}, \texttt{isreal(a)}, \\ \texttt{isfinite(a)}, ...
+\end{itemize}
+
+Essentially, every predefined function that starts with \texttt{is...} is a boolean test. To find others, open the command line interface, type \texttt{?is} and press TAB twice.
+
+\subsection{For and While Loops}
+
+In Julia you can create repeated evaluations using \texttt{for} and \texttt{while} block codes. They are both quite intuitive, but let's take a chance to introduce some new commands frequently used together with loops.
+
+The \texttt{while} loop simply runs the block \textbf{while} the test remains true. For instance:
+
+\begin{example}{While loop}
+\label{ex:while}
+\begin{minted}[mathescape]{julia}
+n = 0; # initialize n
+while n <= 10
+  println("Running for n=", n);
+  n += 2; # update n, incrasing by 2
+end
+\end{minted}
+\end{example}
+
+When we use \texttt{while}, usually a variable used for the stop condition must be initialized outside, and updated inside the block. Here we initialize with \texttt{n=0}, and update it incrementing as \texttt{n += 2}, which is a short notation for \texttt{n = n + 2}.
+
+The code above could be better written with a \texttt{for} statement:
+
+\begin{example}{For loop}
+\label{ex:for}
+\begin{minted}[mathescape]{julia}
+for n=0:2:10
+  println("Running for n=", n);
+end
+\end{minted}
+\end{example}
+
+Here we use the colon operator \texttt{(start:step:end)} to initialize $n=0$, update its value in steps of 2 until it reaches 10. We have used this form in the implementation of the factorial function in Example \ref{ex:fact}.
+
+You may also use \texttt{for} to run through lists. The example is self-explanatory:
+
+\begin{example}{For each in list}
+\label{ex:foreach}
+\begin{minted}[mathescape]{julia}
+
+# using an array to store a list of values
+numericlist = [ 1, 10, 2, 8, 20, 0 ]; 
+
+for each in numericlist
+  println("each = ", each);
+end
+
+stringlist = [ "this", "may", "also", "be text" ];
+
+for txt in stringlist
+  println(txt);
+end
+
+\end{minted}
+\end{example}
+
+\subsection{Comprehensions}
+\label{sec:comprehensions}
+
+Comprehensions use the structure of the \texttt{for} loop to easily create arrays. For instance, Example \ref{ex:truthtable} uses comprehensions to create the Truth Tables. The general form is
+
+\begin{minted}{julia}
+ A = [ f(x,y) for x=rangeX, y=rangeY ];
+ A = [ f(x,y) for x in listX, y in listY ];
+\end{minted}
+
+The first variable after the \texttt{for} refers to the line, and the second to the column. It is possible to go further into multi-dimensional arrays (tensors), but let's keep it simple for now. The extension to $n$-dimensions is evident.
+
+
+
+
+\section{Input and Output}
+
+Input and Output (I/O) is essential for any code. You will almost always need to save your data on a file, and sometime you need to read some data from somewhere. The basic commands to read files are: \texttt{readdlm} and \texttt{readcsv}. To write a file: \texttt{writedlm} and \texttt{writecsv}. Check their help-description in Julia.
+
+Here \texttt{...dlm} stands for ``delimited'', while \texttt{...csv} is ``comma-separated values''.
+
+Let's first assume you have your data stored in the file ``foo.dat'' as a matrix, such each line of the files correspond to a line of the matrix, and the matrix columns are separated by white spaces. You can read it running: \mintinline[escapeinside=||]{julia}{|\julia| a = readdlm("foo.dat")}. The data will be stored in the matrix (array) \texttt{a}. 
+
+\begin{example}{Reading and writing files}
+\label{ex:reading}
+
+Using your favorite text editor, create a data file ``foo.dat'' and fill with a $5\times5$ numerical matrix of your choice. This matrix may have integers or real numbers.
+Separate the numbers in each line using spaces. Now, in Julia's command line interface, run:
+
+\vspace*{0.3cm}
+
+\begin{minted}[escapeinside=||,mathescape]{julia}
+  |\julia| data = readdlm("foo.dat")
+\end{minted}
+
+You should see something like this:
+
+\begin{minted}[escapeinside=||,mathescape]{julia}
+|\julia| data = readdlm("foo.dat")
+5x5 Array{Float64,2}:
+  1.0   2.0   3.0   4.0   5.0
+  6.0   7.0   8.0   8.0   9.0
+ 10.0  11.0  12.3  13.0  14.0
+ 15.0  16.0  17.3  18.2  19.0
+ 20.1  21.0  22.3  24.0  25.0
+\end{minted}
+
+Now the data is stored in the variable \texttt{data}. Let's multiply this data by 2, and save it in a different file. But now the columns will be separated by commas.
+
+\begin{minted}[escapeinside=||,mathescape]{julia}
+|\julia| writedlm("bar.dat", 2*data, ',');
+\end{minted}
+
+Open the file ``bar.dat'' in the text editor to see the result. This is the format of a CSV file. You would get the same result running: 
+
+\begin{minted}[escapeinside=||,mathescape]{julia}
+|\julia| writecsv("bar.dat", 2*data)
+\end{minted}
+\end{example}
+
+
+
+\section{Other relevant topics}
+
+\subsection{Passing parameters by reference or by copy \textcolor{red}{(not finished)}}
+
+\subsection{Operator Precedence}
+
+The operator precedence rules define the order that operations are evaluated. For instance, what is the result of $2+3\times 4$? You are probably getting 14 and not 20, right? You know that you should multiply $3\times 4$ first, and them sum 2. How do you know that? Someone has told you that multiplication takes precedence over addition. If we want to add 2 and 3 first, and then multiply the result by 4, you should write $(2+3)\times 4$. This one give us 20.
+
+Sometimes it might be difficult to remember the precedence rules. For instance, what's the result of $(10/2\times 5)$? Is it 1 or 25? To avoid problems, it is always better to use parenthesis: $(10/(2\times 5))$ or $((10/2)\times 5)$.
+
+In Julia, the most common operations follow this order of precedence
+
+\begin{enumerate}
+ \item Exponentiation \textasciicircum{} or the elementwise equivalent .\textasciicircum{}
+ \item Multiplication $*$ and division $/$ or the elementwise equivalents $.*$ and $./$
+ \item Addition $+$ and $-$
+ \item Comparisons: $>$ \; $<$ \; $>=$ \; $<=$ \; $==$ \; $!=$ 
+\end{enumerate}
+
+For more details and the full list of operations, please check Julia's documentation.
+
+
+\section{Questions from the students}
+
+Here I'll list some questions from the students that I couldn't answer during the class.
+
+\paragraph*{Question [1]} How to read a data file that has complex numbers?
+
+\paragraph*{Answer:} The \texttt{readdlm} command will return a string \texttt{"3+1im"} instead of the complex number \texttt{3+1im}. In this case the data file will be read as type \texttt{Any}. Below I wrote two codes to overcome this.
+
+In the first code I read the data as \texttt{ASCIIString} and use \texttt{parse} and \texttt{eval} to evaluate the expression in Julia as if it were a code. For instance, if one entry of the data file is \texttt{"2+2"}, it will actually be evaluated to 4. Here's the code:
+
+\begin{minted}{julia}
+ data = map(x->eval(parse(x)), readdlm("data.dat", ASCIIString));
+ data = convert(Array{Complex{Float64},2}, data);
+\end{minted}
+
+The problem with the code above is that it first reads everything as Strings. A second choice would be:
+
+\begin{minted}{julia}
+ myparse(x) = (typeof(x) == SubString{ASCIIString}) ? eval(parse(x)) : x;
+ data = map(x->myparse(x), readdlm("data.dat"));
+ data = convert(Array{Complex{Float64},2}, data);
+\end{minted}
+
+This version reads the data as type \texttt{Any} and uses the user-defined function \texttt{myparse(x)} to convert to a number only the Strings.
+
+However, a better choice would be to save the real and imaginary parts separated in the first place. If your data is a n-columns file, save real part in one column and the imaginary in the next. If you are saving matrices, save the real and imaginary in different files. This way is probably more efficient, since for large files the \texttt{parse(x)} command will probably be too slow.
+
+
+\paragraph*{Question [2]} How to choose the line color in PyPlot?
+
+\paragraph*{Answer:} Please check the Python and Matplotlib installation. The simple code tested in class should work:
+
+\begin{minted}{julia}
+using PyPlot
+x = linspace(0,2pi,50);
+plot(x, sin(x), color="red", linewidth=2.0, linestyle="-")
+plot(x, cos(x), color="blue", linewidth=2.0, linestyle="--")
+\end{minted}
+
+Please check the updated PyPlot installation section above.
+
+\paragraph*{Question [3]} What's the difference between Tuples and Arrays?
+
+\paragraph*{Answer:} Tuples are immutable and array are mutable. The example in the text and problem proposed below do not explore this difference. I'll replace them with a better discussion soon. The main difference is that a Tuple will be passed to functions by copy, while arrays are passed by reference. But I still have to confirm this with some example.
+
+
+\section{Problems}
+
+\begin{problem}{\texttt{Int64} and \texttt{Float64}}
+ \label{prob:IntFloat}
+
+ If both formats \texttt{Int64} and \texttt{Float64} use the same amount of memory, why having both defined instead of always using \texttt{Float64}? Check, for instance, Ref.~\cite{NFranco2006Calculo} and the Wikipedia pages mentioned earlier.
+\end{problem}
+
+\begin{problem}{Bhaskara}
+ \label{prob:bhaskara}
+ 
+ Write a function named \texttt{bhaskara} that receives three parameters \texttt{a}, \texttt{b} and \texttt{c} representing the coefficients of the quadratic polynomial equation $a x^2 +bx +c = 0$. Calculate the roots \texttt{r1} and \texttt{r2}, returning them as a \textbf{Tuple}. Try the code below to test your implementation:
+ 
+ \begin{minted}[escapeinside=||]{julia}
+  |\julia| root1, root2 = bhaskara(2.0, -2.0, -12.0);
+  |\julia| println("The first root is ", root1)
+  |The first root is 3.0|
+  |\julia| println("The second root is ", root2)
+  |The second root is -2.0|
+ \end{minted} 
+\end{problem}
+
+\begin{problem}{Scripts}
+ \label{prob:scripts}
+ 
+ Write a code of your choice as a script (could be one of the examples or problems here). Try to run it using both methods described in Section \ref{sec:scripts}. What is the difference between these two methods? 
+\end{problem}
+
+
+\begin{problem}{Scope of a variable}
+ \label{prob:scope}
+ 
+ \textbf{a)} Go back to Example \ref{ex:scope}. Save it as a script file. Run it and check that the values match the numbers in the example. Can you explain the outputs?
+ 
+ \textbf{b)} In the first line of the definition of the function $h(y)$
+ 
+ replace: \mintinline{julia}{x = 0}
+ 
+ with: \mintinline{julia}{global x = 0}
+ 
+ Run the script again. Explain the new output of each line.
+ 
+ \textbf{c)} Still on $h(y)$, what happens if you also initialize the variable \texttt{res} as global?
+\end{problem}
+
+
+\begin{problem}{Conditional evaluations}
+ 
+ \textbf{a)} Write a code to represent the following function:
+ 
+ \begin{equation}
+  \psi(x) = 
+  \begin{cases} 
+   1       & \text{if } x < -a \\
+   (x/a)^2     & \text{if } -a \leq x \leq +a \\
+   1       & \text{if } x > +a
+  \end{cases}
+ \end{equation}
+
+ \textbf{b)} Use \texttt{linspace} to create a range of 100 values for $x$ between \texttt{-2a} and \texttt{2a}. Calculate $\psi(x)$ over this range using your function. Use \texttt{PyPlot} or any other plotting package to plot your function.
+\end{problem}
+
+
+
+\begin{problem}{While and For Loops}
+ 
+ Rewrite the factorial code of Example \ref{ex:fact} using a \texttt{while} loop instead of a \texttt{for}.
+\end{problem}
+
+
+
+\begin{problem}{Input and Output}
+ \label{prob:readwritecsv}
+ 
+ \textbf{a)} Go back to Example \ref{ex:reading}. Write a code to read the CSV data in ``bar.dat'', and save it as ``semicolon.dat'' using semicolon (;) as a separator.
+ 
+ \textbf{b)} Write a code to read the ``semicolon.dat'', and save it now as ``text.dat'' with the data type set to \texttt{String}.
+\end{problem}
+
+
+\begin{problem}{Random numbers and histograms}
+ 
+ Write a code to generate a large set of random numbers (start with 1000) and use the \texttt{hist(...)} command to generate a histogram, and use \texttt{PyPlot} to plot it. The output of \texttt{hist(...)} is tricky. Pay attention to it and check Julia's documentation.
+ 
+ \textbf{a)} Use the \texttt{rand(...)} function to get an uniform distribution between $[0,1)$;
+ 
+ \textbf{b)} Use the \texttt{randn(...)} function to get a standard normal distribution.
+\end{problem}
+
+
+\begin{problem}{Cross and dot products}
+
+Given a parallelepiped defined by the vectors $\bm{a} = (1, 0, 0)$, $\bm{b} = (0, 1, 0)$ and $\bm{c} = (5, 5, 1)$, write a code to calculate its volume $V = \bm{a} \cdot (\bm{b} \times \bm{c})$ using Julia's definitions of dot and cross products.
+\end{problem}
+
+
+\begin{problem}{Calculate $\pi$ using random numbers}
+ \label{prob:pi}
+ 
+ \textbf{a)} Consider a square of side 1 centered at origin, and a circle of radius 1 inscribed into the square. Draw two random numbers $x$ and $y$ from an uniform distribution between $[0,1)$ and calculate its norm. Count the number of pairs $(x,y)$ that falls inside and outside the circle. You'll see that a good approximation for $\pi$ is achieve after you draw many pairs $(x,y)$ using the expression \texttt{pi = 4*inside/total}.
+ 
+ \textbf{b)} Explain why this code gives you $\pi$.
+ 
+ \textbf{c)} Use PyPlot or any other plotting package to show the random numbers filling the circle and square (use different colors if inside or outside the circle) as you draw random pairs $(x,y)$.
+\end{problem}
+
+
+

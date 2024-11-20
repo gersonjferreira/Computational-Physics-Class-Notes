@@ -1,0 +1,3 @@
+temperatura 30.5 K
+num_moleculas 100 #
+comprimento 1.3 m

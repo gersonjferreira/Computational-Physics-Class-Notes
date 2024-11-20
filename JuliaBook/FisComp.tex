@@ -1,0 +1,251 @@
+\documentclass[a4paper,openright,12pt]{memoir}
+
+\usepackage{color}
+\providecommand{\red}[1]{\textcolor{red}{#1}}
+\providecommand{\blue}[1]{\textcolor{blue}{#1}}
+
+\usepackage{lipsum}
+\nouppercaseheads
+\makepagestyle{mystyle}
+% \makefootrule{mystyle}{\textwidth}{\normalrulethickness}{0pt}
+\makeheadrule{mystyle}{\textwidth}{\normalrulethickness}
+\makeevenhead{mystyle}{Introduction to Computational Physics}{}{Gerson J. Ferreira - INFIS - UFU - Brazil}
+\makeoddhead{mystyle}{}{}{\itshape\leftmark}
+\makeevenfoot{mystyle}{\thepage}{}{}
+\makeoddfoot{mystyle}{}{}{\thepage}
+\makepsmarks{mystyle}{%
+\createmark{chapter}{left}{nonumber}{}{}}
+\pagestyle{mystyle}
+
+\providecommand{\tin}{\ensuremath{<}}
+\providecommand{\tout}{\ensuremath{>}}
+\providecommand{\bmr}{\bm{r}} % vector r
+\providecommand{\brho}{\bm{\rho}} % vector rho
+\providecommand{\ket}[1]{\mbox{\ensuremath{\vert #1\rangle}}} % KET
+\providecommand{\bra}[1]{\langle #1\vert} % BRA
+\providecommand{\bracket}[2]{\langle #1\vert #2\rangle} % BRAKET
+\providecommand{\mean}[1]{\langle #1 \rangle} % MEDIA
+\providecommand{\Tr}{\ensuremath{\text{Tr}}}
+
+\settocdepth{subsection}
+\setsecnumdepth{subsection}
+
+\usepackage[pdftex]{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{bm}
+
+% \usepackage[num]{abntex2cite} % Citações padrão ABNT
+\bibliographystyle{unsrt}
+
+%  compilação de fontes
+\usepackage[utf8]{inputenc}
+\usepackage{fourier}
+\usepackage{microtype} % para melhorias de justificação
+\usepackage[dvipsnames]{xcolor} % para cores
+\usepackage{graphicx} % para imagens
+\usepackage{booktabs,tabularx,rotating} % para tabelas
+\usepackage{mdframed} % para caixas de texto como na CIP do verso do título
+\usepackage{multicol} % tabelas com colunas mescladas
+\usepackage{lettrine} % letras capitulares
+\usepackage{xspace} % para nao precisar de espaços com {} depois de comandos como \LaTeX e abreviações criadas pelo usuário
+\usepackage{leading} % espaçamento entrelinhas (leading)
+\leading{13pt}
+\definecolor{blue}{RGB}{41,5,195} % alterando o aspecto da cor azul
+
+
+
+
+\usepackage{minted}
+\usepackage{tcolorbox}
+\usepackage{etoolbox}
+% \BeforeBeginEnvironment{minted}{\begin{center}\begin{tcolorbox}[width=0.95\textwidth]}%
+% \AfterEndEnvironment{minted}{\end{tcolorbox}\end{center}}%
+\setminted{ %
+    linenos=false,            % Line numbers
+    autogobble=true,          % Automatically remove common whitespace
+    %bgcolor=dark-bg,
+    %frame=lines,
+    framesep=2mm,
+    fontsize=\footnotesize
+}
+
+% ============================================================
+%      ENVIRONMENT FOR EXAMPLES
+% ============================================================
+% ============================================================
+\newcommand*\ruleline[1]{\par\noindent\raisebox{.8ex}{\makebox[\linewidth]{\hrulefill\hspace{1ex}\raisebox{-.8ex}{#1}\hspace{1ex}\hrulefill}}}
+\newcounter{ctExample}
+\newenvironment{example}[1]
+{
+    \refstepcounter{ctExample}
+    \begin{center}
+    \begin{tcolorbox}[width=0.95\textwidth]
+    \ruleline{\texttt{Example \thectExample: #1}}
+    \vspace*{-0.2cm}
+}{
+    \end{tcolorbox}
+    \end{center}
+}
+\numberwithin{ctExample}{chapter}
+
+% ============================================================
+%      ENVIRONMENT FOR PROBLEMS
+% ============================================================
+% ============================================================
+\newcounter{ctProblem}
+\newenvironment{problem}[1]
+{
+  \refstepcounter{ctProblem}
+  \noindent \textbf{Problem \thectProblem:} #1 \hrulefill
+}{
+  \vspace{0.3cm}
+}
+\numberwithin{ctProblem}{chapter}
+
+
+
+\title{Computational Physics}
+\author{Gerson J. Ferreira}
+\date{\today}
+
+
+% informações do PDF
+\makeatletter
+\usepackage{hyperref}
+\hypersetup{
+ %pagebackref=true,
+ pageanchor=false,
+ pdftitle={\@title}, 
+ pdfauthor={\@author},
+ pdfsubject={\@title},
+ pdfcreator={LaTeX with abnTeX2},
+ pdfkeywords={abnt}{latex}{abntex}{abntex2}{livro}, 
+ colorlinks=true, % false: boxed links; true: colored links
+ linkcolor=blue, % color of internal links
+ citecolor=blue, % color of links to bibliography
+ filecolor=magenta, % color of file links
+ urlcolor=blue,
+ bookmarksdepth=4
+}
+\makeatother
+% ---
+
+% Estilo de capítulos
+\chapterstyle{veelo} % madsen, lyhne, pedersen, Veja outros estilos em: http://www.tex.ac.uk/tex-archive/info/MemoirChapStyles/MemoirChapStyles.pdf
+
+
+% Controle do espaçamento entre um parágrafo e outro:
+\setlength{\parskip}{0.2cm}  % tente também \onelineskip
+%% Não recomendado mudar.
+
+% Margens do documento 
+ \setlrmarginsandblock{2.5cm}{3.5cm}{*}
+ \setulmarginsandblock{2.5cm}{3.5cm}{*}
+ \checkandfixthelayout
+% ---
+
+
+
+
+
+\begin{document}
+\frenchspacing
+
+\frontmatter
+% \maketitle
+
+\begin{titlingpage}
+\phantom{xxx}
+\vspace{0.5cm}
+\huge
+\raggedright
+Gerson J. Ferreira \\ \normalsize Nanosciences Group \textcolor{blue}{www.infis.ufu.br/gnano}
+\\
+\vspace{2.5cm}
+\huge 
+{\raggedleft
+\textit{\textcolor{blue}{Introduction to Computational Physics}}\\
+\Large 
+with examples in Julia \\
+}
+\centering
+\vspace{4cm}
+\huge This is a draft!\\
+\Large
+Please check for an updated version on\\
+\url{http://www.infis.ufu.br/gerson}
+\\
+\large
+Currently, I'm not working on this text. I'll start to review and improve/finish some sections next semester.
+\vfill
+\Large
+Institute of Physics, Federal University of Uberlândia \\ \today
+\end{titlingpage}
+
+\pdfbookmark[0]{\contentsname}{toc}
+\renewcommand{\baselinestretch}{1.2}\normalsize
+\tableofcontents*
+\renewcommand{\baselinestretch}{1.0}\normalsize
+
+\mainmatter
+
+\input{intro}
+
+\input{julia}
+
+\input{calcdiffint}
+
+\input{ode}
+
+\input{fourier}
+
+% ***************************************
+\chapter{Statistics \textcolor{red}{(TO DO)}}
+\vspace*{-1cm}
+\begin{flushright}
+\texttt{What are the odds of having a silly quote here?}
+\end{flushright}
+
+\section{Random numbers}
+\section{Random walk and diffusion}
+\section{The Monte Carlo method}
+% ***************************************
+
+
+% ***************************************
+\chapter{Partial Differential Equations \textcolor{red}{(TO DO)}}
+\label{chap:PDE}
+% \vspace*{-1cm}
+% \begin{flushright}
+% \texttt{What are the odds of having a silly quote here?}
+% \end{flushright}
+
+\section{Separation of variables}
+\section{Discretization in multiple dimensions}
+\section{Iterative methods, relaxation}
+\section{Fourier transform (see \S\ref{sec:fourierPDE})}
+
+% ***************************************
+
+\input{plotting}
+
+% ***************************************
+\chapter{Other topics \textcolor{red}{(TO DO)}}
+\vspace*{-1cm}
+\begin{flushright}
+\texttt{... and yet another silly quote}
+\end{flushright}
+\section{Linear algebra}
+\section{Root finding}
+\section{Linear systems}
+\section{Least squares}
+% ***************************************
+
+
+% \chapter{Solution to the proposed problems}
+% \input{solutions1}
+
+% \postextual
+\bibliography{biblio}
+\end{document}
