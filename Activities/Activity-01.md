@@ -83,7 +83,7 @@ f = fibonacci(numero)
 print(f'Sequência dos {numero} primeiros números de Fibonacci: {f}')
 ```
 
-3. **Bhaskara.** Defina uma função chamada `bhaskara` que recebe três parâmetros `(a, b, c)` e retorne a duas raízes `(x1 , x2)` da equação `ax<sup>2</sup> + bx + c = 0`. O código deve seguir o template abaixo:
+3. **Bhaskara.** Defina uma função chamada `bhaskara` que recebe três parâmetros `(a, b, c)` e retorne a duas raízes `(x1 , x2)` da equação `ax² + bx + c = 0`. O código deve seguir o template abaixo:
 
 ```python
 def bhaskara(a, b, c):
