@@ -50,7 +50,9 @@ Após seguir e reproduzir os exemplos por conta própria, faça gráficos das fu
 - Deltoid:
 ```math
 x = 2 \cos\theta + \cos 2\theta
-\\
+```
+
+```math
 y = 2\sin\theta - \sin 2\theta
 ```
 
