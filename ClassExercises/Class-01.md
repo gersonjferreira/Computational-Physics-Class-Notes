@@ -51,6 +51,3 @@ Uma espaçonave viaja da Terra a um planeta em outra estrela a uma velocidade pr
 
 Talvez você queira usar e modificar a função do Exercício 1 para imprimir o tempo no formato (anos, meses, dias, horas, minutos, segundos). Mas para isso, assuma inicialmente meses de 30 dias e anos de 365 dias (ignore anos bisextos). Mas veja, a função deste exercício não deve escrever nada na tela, ela deve apenas retornar o tempo, e você deve capturar o tempo e imprimir na tela diretamente, ou usando a função do Exercício 1.
 
-## Exercício 4
-
-Um destes: números Somos, 3n+1, ou mapa logistico
