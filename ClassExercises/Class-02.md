@@ -18,6 +18,8 @@ a) Escreva um programa que leia os dados do arquivo e faça um gráfico de $V$ e
 
 b) Ajuste uma reta aos dados, plote-a junto aos pontos do item anterior, e determine o valor da razão $h/e$ e da função trabalho $\phi$ do material.
 
+> Sugestão: Use a função `numpy.polyfit` para ajustar uma reta aos dados.
+
 
 ## Exercício 2
 
