@@ -1,6 +1,6 @@
 # Aula 1
 
-Alguns exercícios aqui foram inspirados nos livros:
+Alguns exercícios aqui foram inspirados ou extraídos dos livros:
 
 1. Mark Newman - Computational Physics (2013, University of Michigan)
 
