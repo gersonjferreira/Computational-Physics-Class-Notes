@@ -1,3 +1,6 @@
+# local files
+*.npz
+
 # vs code e documentação
 .vscode
 _build
