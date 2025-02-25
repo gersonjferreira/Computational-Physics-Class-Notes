@@ -1,7 +1,3 @@
----
-lang: pt-br
----
-
 # Atividade 1
 
 Nesta primeira atividade, abordaremos os tópicos:

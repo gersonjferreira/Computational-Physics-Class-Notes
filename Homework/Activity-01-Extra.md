@@ -1,7 +1,3 @@
----
-lang: pt-br
----
-
 # Atividade 1 - Exercícios Extras
 
 **Aviso:** Este é um exercício extra, e não é necessário entregá-lo.
