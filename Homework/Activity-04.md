@@ -9,13 +9,13 @@ Nesta primeira atividade, abordaremos os tópicos:
 
 ## Atividades mínimas: 65 pts
 
-1. **Passeio aleatório (implementação básica).** Considere um passeio aleatório unidimensional, onde a cada instante de tempo o caminhante dá um passo uma unidade para a direita ou para a esquerda com probabilidades $p$ e $1-p$, respectivamente. O passeio termina depois de $N=1000$ passos. Faça um gráfico da posição do caminhante em função do número de passos (que representa o tempo). Use $p=0.5$ e $p=0.8$. Implemente na forma de uma função que receba como argumento o número de passos $N$ e a probabilidade $p$, e retorne um *array* com a posição do caminhante em cada passo.
+1. **Passeio aleatório (implementação básica).** Considere um passeio aleatório unidimensional, onde a cada instante de tempo o caminhante dá um passo uma unidade para a direita ou para a esquerda com probabilidades $p$ e $1-p$, respectivamente. O passeio termina depois de $N=1000$ passos. Faça um gráfico da posição do caminhante em função do número de passos (que representa o tempo). Use $p=0.5$ e $p=0.6$. Implemente na forma de uma função que receba como argumento o número de passos $N$ e a probabilidade $p$, e retorne um *array* com a posição do caminhante em cada passo.
 
-2. **Passeio aleatório (repetição).** Rode o código acima 100 vezes para um valor fixo $p$ e faça o gráfico conjunto de todos os passeios. Use $p=0.5$ e $p=0.8$. O que observa?
+2. **Passeio aleatório (repetição).** Rode o código acima 100 vezes para um valor fixo $p$ e faça o gráfico conjunto de todos os passeios. Use $p=0.5$ e $p=0.6$. O que observa?
 
 ## Atividades intermediárias: 20 pts
 
-3. **Passeio aleatório (médias).** Calcule a média e o desvio padrão da posição do caminhante em função do número de passos. Faça um gráfico da média e do desvio padrão em função dos passos. Use $p=0.5$ e $p=0.8$.
+3. **Passeio aleatório (médias).** Calcule a média e o desvio padrão da posição do caminhante em função do número de passos. Faça um gráfico da média e do desvio padrão em função dos passos. Use $p=0.5$ e $p=0.6$.
 
 4. **Passeio aleatório (histograma 1).** Usando os dados do exercício 2, faça histogramas da posição do caminhante no inicio, no meio e no final do passeio. Plote os 3 histogramas no mesmo gráfico. Veja se o resultado condiz com o observado no exercício 2.
 

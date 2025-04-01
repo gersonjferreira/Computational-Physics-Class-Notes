@@ -24,7 +24,7 @@ def pi_monte_carlo(N):
 
     a) Implemente uma função `mapa_logistico(r, x0, N)` que recebe o parâmetro de crescimento `r`, a condição inicial `x0` (i.e. $x_0$ para $n=0$), e o número de iterações `N`, e retorna uma lista com os valores de $x_n$ para $n=0,1,2,\ldots,N$.
 
-    b) Faça gráficos de $x_n$ vs $n$ (de 0 a 1000 pelo menos) para $r = 2, 3.3, 3.5, 3.9$, sempre iniciando de $x_0=1/2$. Talvez seja melhor usar um gráfico de linhas (`plt.plot`) para $r=2$, e um gráfico de pontos (`plt.scatter`) para os outros valores de $r$. O que você observa?
+    b) Faça gráficos de $x_n$ vs $n$ (de 0 a 200 ou 300) para $r = 2, 3.3, 3.5, 3.9$, sempre iniciando de $x_0=0.3$. Talvez seja melhor usar um gráfico de linhas (`plt.plot`) para $r=2$, e um gráfico de pontos (`plt.scatter`) para os outros valores de $r$. O que você observa?
 
 ## Atividades intermediárias: 20 pts
 
