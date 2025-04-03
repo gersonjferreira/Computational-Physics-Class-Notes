@@ -24,7 +24,7 @@ Assim, os passos do algoritmo para achar o mínimo de uma função $U(\vec{r})$ 
 
 1. Inicializar a posição da partícula $\vec{r}_{0}$.
 2. Calcular o gradiente $\nabla U(\vec{r})$ na posição atual $\vec{r}_{0}$.
-3. Atualizar a posição da partícula: $\vec{r}_{1} = \vec{r}_0 - \alpha \nabla U(\vec{r}_{0})$.
+3. Atualizar a posição da partícula: $\vec{r}_{1} = \vec{r}_{0} - \alpha \nabla U(\vec{r}_{0})$.
 4. Considerar $\vec{r}_{1}$ como a nova posição inicial da partícula e repetir os passos 2 e 3 em um loop da forma $\vec{r}_{n} = \vec{r}_{n-1} - \alpha \nabla U(\vec{r}_{n-1})$.
 5. Interromper o loop quando a variação da posição for menor que um valor de tolerância $\epsilon$ ou quando o número máximo de iterações for atingido.
 6. Retornar a posição final da partícula $\vec{r}_{n}$ como o mínimo da função $U(\vec{r})$.
