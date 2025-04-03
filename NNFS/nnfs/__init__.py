@@ -44,7 +44,14 @@ class nn:
             ndarray: Output of the network after applying all layers.
         """
         # Pass inputs through each layer
+        x0 = inputs
         for layer in self.layers:
-            inputs = layer.forward(inputs)
+            # next x1 from previous x0
+            x1 = layer.forward(x0)
+            # for the next layer, x1 becomes x0
+            x0 = x1
+            
+        # output is the last layer's output
+        output = x1
         
-        return inputs, self.loss(inputs, reference)
+        return output, self.loss(output, reference)
