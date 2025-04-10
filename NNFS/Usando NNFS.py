@@ -12,16 +12,22 @@ nn = nnfs.nn(1, 1, 3, 10, nnfs.Activations('Tanh'), nnfs.Loss('MSE'))
 x = np.array([np.linspace(0, 1, 10)]).T
 y = np.sin(2*np.pi*x)
 
-Pred, Erro, Epochs = nn.metropolis(x, y,
-                                   batch_size=5,
-                                   bach_epochs=100,
-                                   max_epochs=100000, 
-                                   tE0=0.1,
-                                   decay_rate=1e-3,
-                                   tEmin=1e-2,
-                                   delta_bias=1e-2,
-                                   delta_weight=1e-2,
-                                   Error_threshold=1e-8)
+# Pred, Erro, Epochs = nn.metropolis(x, y,
+#                                    batch_size=5,
+#                                    bach_epochs=100,
+#                                    max_epochs=100000, 
+#                                    tE0=0.1,
+#                                    decay_rate=1e-3,
+#                                    tEmin=1e-2,
+#                                    delta_bias=1e-2,
+#                                    delta_weight=1e-2,
+#                                    Error_threshold=1e-8)
+
+Pred, Erro, Epochs = nn.backpropagation(x, y,
+                                        learning_rate=0.1,
+                                        max_epochs=100000,
+                                        Error_threshold=1e-8)
+
 print("Erro:\n", Erro)
 print("Epochs:\n", Epochs)
 
