@@ -41,8 +41,34 @@ class Layer():
         Returns:
             ndarray: Output of the layer after applying weights, biases, and activation.
         """
+        # Store inputs for use in the backward pass
+        self.inputs = inputs
         # Compute the dot product of inputs and weights, add biases, and apply activation
         self.output = self.activation(inputs @ self.weights + self.biases)
-        # Return the output
         return self.output
+
+    def backward(self, d_output, learning_rate):
+        """
+        Performs the backward pass and updates weights and biases.
+        
+        Args:
+            d_output (ndarray): Gradient of the loss with respect to the layer's output.
+            learning_rate (float): Learning rate for weight and bias updates.
+        
+        Returns:
+            ndarray: Gradient of the loss with respect to the layer's input.
+        """
+        # Gradient of activation
+        d_activation = d_output * self.activation(self.output, derivative=True)
+        
+        # Gradients for weights and biases
+        d_weights = self.inputs.T @ d_activation
+        d_biases = np.sum(d_activation, axis=0, keepdims=True)
+        
+        # Update weights and biases
+        self.weights -= learning_rate * d_weights
+        self.biases -= learning_rate * d_biases
+        
+        # Return gradient for the previous layer
+        return d_activation @ self.weights.T
 

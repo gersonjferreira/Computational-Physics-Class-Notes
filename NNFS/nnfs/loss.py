@@ -29,34 +29,36 @@ class Loss():
             # Raise an error for invalid methods
             raise Exception(f'Loss {method} not defined. Supported methods: {list(methods.keys())}')
     
-    def mean_squared_error(self, y_true, y_pred):
+    def mean_squared_error(self, y_true, y_pred, derivative=False):
         """
         Compute the Mean Squared Error (MSE) loss.
         
         Args:
             y_true (ndarray): True labels of shape (batch_size, N_OUTPUT).
             y_pred (ndarray): Predicted values of shape (batch_size, N_OUTPUT).
+            derivative (bool): Whether to compute the derivative of the loss.
         
         Returns:
-            float: The computed MSE loss.
+            float: The computed MSE loss or its derivative.
         """
-        self.output = np.mean((y_true - y_pred) ** 2)  # MSE formula
-        return self.output
+        if derivative:
+            return 2 * (y_pred - y_true) / y_true.shape[0]  # Fix normalization by batch size
+        return np.mean((y_true - y_pred) ** 2)
 
-    # WARNING: this one was implemented via GitHub Copilot and I didn't check it!
-    def cross_entropy(self, y_true, y_pred):
+    def cross_entropy(self, y_true, y_pred, derivative=False):
         """
         Compute the Cross-Entropy loss.
         
         Args:
             y_true (ndarray): True labels (one-hot encoded or probabilities) of shape (batch_size, N_OUTPUT).
             y_pred (ndarray): Predicted probabilities of shape (batch_size, N_OUTPUT).
+            derivative (bool): Whether to compute the derivative of the loss.
         
         Returns:
-            float: The computed Cross-Entropy loss.
+            float: The computed Cross-Entropy loss or its derivative.
         """
         # Clip predictions to avoid log(0)
         y_pred = np.clip(y_pred, 1e-15, 1 - 1e-15)
-        # Compute cross-entropy loss
-        self.output = -np.sum(y_true * np.log(y_pred)) / y_true.shape[0]
-        return self.output
+        if derivative:
+            return (y_pred - y_true) / (y_pred * (1 - y_pred) * y_true.shape[0])  # Fix derivative formula
+        return -np.sum(y_true * np.log(y_pred)) / y_true.shape[0]

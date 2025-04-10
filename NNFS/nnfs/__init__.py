@@ -183,3 +183,41 @@ class nn:
 
         # return the final prediction, error, and epoch count
         return Pred, Erro, epoch
+
+    def backpropagation(self, x, y, learning_rate=0.01, max_epochs=1000, Error_threshold=0.01):
+        """
+        Trains the neural network using backpropagation and SGD.
+        
+        Args:
+            x (ndarray): Input data of shape (num_samples, N_INPUT).
+            y (ndarray): Ground truth labels of shape (num_samples, N_OUTPUT).
+            learning_rate (float): Learning rate for weight and bias updates.
+            max_epochs (int): Maximum number of training epochs.
+            Error_threshold (float): Error threshold to stop training early.
+        
+        Returns:
+            tuple: A tuple containing:
+                - Pred (ndarray): Final predictions of the network.
+                - Erro (float): Final error value.
+                - epoch (int): Number of epochs completed.
+        """
+        self.Errors = []
+
+        for epoch in tqdm(range(max_epochs)):
+            # Forward pass
+            Pred, Erro = self.forward(x, y)
+            Erro += self._compute_regularization()
+            self.Errors.append(Erro)
+
+            # Stop if error is below threshold
+            if Erro < Error_threshold:
+                break
+
+            # Backward pass
+            d_output = self.loss(y, Pred, derivative=True)  # Fix argument order for derivative
+            for layer in reversed(self.layers):
+                d_output = layer.backward(d_output, learning_rate)
+
+        # Final prediction
+        Pred, Erro = self.forward(x, y)
+        return Pred, Erro, epoch
