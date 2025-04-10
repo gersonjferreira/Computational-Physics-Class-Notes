@@ -9,7 +9,7 @@ class Layer():
         biases (ndarray): Bias vector of shape (1, n_neurons).
         activation (callable): Activation function for the layer.
     """
-    def __init__(self, n_inputs, n_neurons, activation, weight_initializer=0.1, bias_initializer=0.1):
+    def __init__(self, n_inputs, n_neurons, activation, weight_initializer=0.1, bias_initializer=0.1, rng=42):
         """
         Initializes the layer with random weights and biases.
 
@@ -24,10 +24,14 @@ class Layer():
             weights (ndarray): Weight matrix of shape (n_inputs, n_neurons).
             biases (ndarray): Bias vector of shape (1, n_neurons).
         """
+        # check if rng is number or rng instance
+        if isinstance(rng, int):
+            rng = np.random.default_rng(rng)
+        
         # Initialize weights with random values scaled by weight_initializer
-        self.weights = weight_initializer * np.random.randn(n_inputs, n_neurons)
+        self.weights = weight_initializer * rng.normal(0, 1, (n_inputs, n_neurons))
         # Initialize biases with random values scaled by bias_initializer
-        self.biases  = bias_initializer * np.random.randn(1, n_neurons)
+        self.biases  = bias_initializer * rng.normal(0, 1, (1, n_neurons))
         # Store the activation function
         self.activation = activation.forward
         

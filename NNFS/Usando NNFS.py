@@ -7,36 +7,45 @@ import matplotlib.pyplot as plt
 import numpy as np
 import nnfs
 
-nn = nnfs.nn(1, 1, 3, 10, nnfs.Activations('Tanh'), nnfs.Loss('MSE'))
+# commom parameters
+layers = 3
+neurons = 10
+seed = 42
+max_epochs = 1000000
 
+# define data
 x = np.array([np.linspace(0, 1, 10)]).T
 y = np.sin(2*np.pi*x)
 
-# Pred, Erro, Epochs = nn.metropolis(x, y,
-#                                    batch_size=5,
-#                                    bach_epochs=100,
-#                                    max_epochs=100000, 
-#                                    tE0=0.1,
-#                                    decay_rate=1e-3,
-#                                    tEmin=1e-2,
-#                                    delta_bias=1e-2,
-#                                    delta_weight=1e-2,
-#                                    Error_threshold=1e-8)
+# create the NN
+nn = nnfs.nn(1, 1, 
+             layers, neurons,
+             nnfs.Activations('Tanh'),
+             nnfs.Loss('MSE'),
+             weight_initializer=1,
+             bias_initializer=1,
+             seed=seed
+             )
 
-Pred, Erro, Epochs = nn.backpropagation(x, y,
-                                        learning_rate=0.1,
-                                        max_epochs=100000,
-                                        Error_threshold=1e-8)
+# train the NN using the Metropolis algorithm
+Pred, Erro = nn.metropolis(x, y, max_epochs=max_epochs, 
+                                   # T = tE0 * exp(-decay_rate * epoch/max_epochs) + tEmin
+                                   tE0=10,
+                                   decay_rate=50, 
+                                   tEmin=1e-8,
+                                   # update scale
+                                   delta_bias=1e-1,
+                                   delta_weight=1e-1
+                                   )
 
-print("Erro:\n", Erro)
-print("Epochs:\n", Epochs)
-
-x2 = np.array([np.linspace(0, 1, 100)]).T
+# extract the predictions
+x2 = np.array([np.linspace(0, 1, 1000)]).T
 y2 = nn.predict(x2)
 
-plt.figure(figsize=(8, 4))
+# plot the results of metropolis
+plt.figure(figsize=(8, 8))
 
-plt.subplot(121)
+plt.subplot(221)
 plt.title('Prediction vs Data')
 plt.plot(x, y, 'o', label='Data')
 plt.plot(x, Pred, 'o', label='Training')
@@ -45,11 +54,52 @@ plt.xlabel('x (input)')
 plt.ylabel('y (output)')
 plt.legend()
 
-plt.subplot(122)
+plt.subplot(222)
 plt.title('Error vs Epochs')
 plt.loglog(nn.Errors)
 plt.xlabel('Epochs')
 plt.ylabel('Error (log scale)')
+plt.xlim(None, 1.1*max_epochs)
+
+#########################################################################
+
+# create the NN - comment to continue with bias and weitghts from metropolis
+nn = nnfs.nn(1, 1, 
+             layers, neurons,
+             nnfs.Activations('Tanh'),
+             nnfs.Loss('MSE'),
+             weight_initializer=1,
+             bias_initializer=1,
+             seed=seed
+             )
+
+# training the NN using backpropagation and SGD
+Pred, Erro = nn.backpropagation(x, y,
+                                learning_rate=0.01,
+                                max_epochs=max_epochs
+                               )
+
+# extract the predictions
+x2 = np.array([np.linspace(0, 1, 100)]).T
+y2 = nn.predict(x2)
+
+# plot the results of backpropagation and SGD
+
+plt.subplot(223)
+plt.title('Prediction vs Data')
+plt.plot(x, y, 'o', label='Data')
+plt.plot(x, Pred, 'o', label='Training')
+plt.plot(x2, y2, '-', label='Prediction')
+plt.xlabel('x (input)')
+plt.ylabel('y (output)')
+plt.legend()
+
+plt.subplot(224)
+plt.title('Error vs Epochs')
+plt.loglog(nn.Errors)
+plt.xlabel('Epochs')
+plt.ylabel('Error (log scale)')
+plt.xlim(None, 1.1*max_epochs)
 
 plt.tight_layout()
 plt.show()

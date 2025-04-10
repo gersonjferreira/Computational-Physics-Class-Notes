@@ -12,7 +12,7 @@ class Loss():
         
         Args:
             method (str): The name of the loss function to use.
-                          Options: 'MSE', 'CrossEntropy'.
+                          Options: 'MSE'
         
         Raises:
             Exception: If the specified method is not supported.
@@ -20,7 +20,6 @@ class Loss():
         # A dictionary of loss methods
         methods = {
             'MSE': self.mean_squared_error,       # Mean Squared Error
-            'CrossEntropy': self.cross_entropy    # Cross-Entropy Loss
         }
         if method in methods:
             # Use the dict to set the calculate method from the string parameter method
@@ -45,20 +44,3 @@ class Loss():
             return 2 * (y_pred - y_true) / y_true.shape[0]  # Fix normalization by batch size
         return np.mean((y_true - y_pred) ** 2)
 
-    def cross_entropy(self, y_true, y_pred, derivative=False):
-        """
-        Compute the Cross-Entropy loss.
-        
-        Args:
-            y_true (ndarray): True labels (one-hot encoded or probabilities) of shape (batch_size, N_OUTPUT).
-            y_pred (ndarray): Predicted probabilities of shape (batch_size, N_OUTPUT).
-            derivative (bool): Whether to compute the derivative of the loss.
-        
-        Returns:
-            float: The computed Cross-Entropy loss or its derivative.
-        """
-        # Clip predictions to avoid log(0)
-        y_pred = np.clip(y_pred, 1e-15, 1 - 1e-15)
-        if derivative:
-            return (y_pred - y_true) / (y_pred * (1 - y_pred) * y_true.shape[0])  # Fix derivative formula
-        return -np.sum(y_true * np.log(y_pred)) / y_true.shape[0]
