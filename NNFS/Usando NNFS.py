@@ -9,13 +9,13 @@ import nnfs
 
 # commom parameters
 layers = 3
-neurons = 10
+neurons = 5
 seed = 42
-max_epochs = 1000000
+max_epochs = 100000
 
 # define data
-x = np.array([np.linspace(0, 1, 10)]).T
-y = np.sin(2*np.pi*x)
+x = np.array([np.linspace(0, 1, 50)]).T
+y = np.sin(2*np.pi*x) + np.random.normal(0, 0.1, x.shape)
 
 # create the NN
 nn = nnfs.nn(1, 1, 
@@ -35,11 +35,12 @@ Pred, Erro = nn.metropolis(x, y, max_epochs=max_epochs,
                                    tEmin=1e-8,
                                    # update scale
                                    delta_bias=1e-1,
-                                   delta_weight=1e-1
+                                   delta_weight=1e-1,
+                                   Error_threshold=1e-6
                                    )
 
 # extract the predictions
-x2 = np.array([np.linspace(0, 1, 1000)]).T
+x2 = np.array([np.linspace(0, 2, 1000)]).T
 y2 = nn.predict(x2)
 
 # plot the results of metropolis
@@ -76,11 +77,12 @@ nn = nnfs.nn(1, 1,
 # training the NN using backpropagation and SGD
 Pred, Erro = nn.backpropagation(x, y,
                                 learning_rate=0.01,
-                                max_epochs=max_epochs
+                                max_epochs=max_epochs,
+                                Error_threshold=1e-6
                                )
 
 # extract the predictions
-x2 = np.array([np.linspace(0, 1, 100)]).T
+x2 = np.array([np.linspace(0, 2, 100)]).T
 y2 = nn.predict(x2)
 
 # plot the results of backpropagation and SGD
