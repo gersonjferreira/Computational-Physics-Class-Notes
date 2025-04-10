@@ -13,6 +13,9 @@ class Loss():
         Args:
             method (str): The name of the loss function to use.
                           Options: 'MSE', 'CrossEntropy'.
+        
+        Raises:
+            Exception: If the specified method is not supported.
         """
         # A dictionary of loss methods
         methods = {
@@ -31,8 +34,8 @@ class Loss():
         Compute the Mean Squared Error (MSE) loss.
         
         Args:
-            y_true (ndarray): True labels.
-            y_pred (ndarray): Predicted values.
+            y_true (ndarray): True labels of shape (batch_size, N_OUTPUT).
+            y_pred (ndarray): Predicted values of shape (batch_size, N_OUTPUT).
         
         Returns:
             float: The computed MSE loss.
@@ -46,8 +49,8 @@ class Loss():
         Compute the Cross-Entropy loss.
         
         Args:
-            y_true (ndarray): True labels (one-hot encoded or probabilities).
-            y_pred (ndarray): Predicted probabilities.
+            y_true (ndarray): True labels (one-hot encoded or probabilities) of shape (batch_size, N_OUTPUT).
+            y_pred (ndarray): Predicted probabilities of shape (batch_size, N_OUTPUT).
         
         Returns:
             float: The computed Cross-Entropy loss.
@@ -57,4 +60,3 @@ class Loss():
         # Compute cross-entropy loss
         self.output = -np.sum(y_true * np.log(y_pred)) / y_true.shape[0]
         return self.output
-    

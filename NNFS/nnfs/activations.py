@@ -10,9 +10,12 @@ class Activations():
         """
         Initialize the activation function based on the provided method.
         
-        Parameters:
-        method (str): The name of the activation function to use. 
-                      Options: 'ReLU', 'Linear', 'Logistic', 'Tanh'.
+        Args:
+            method (str): The name of the activation function to use. 
+                          Options: 'ReLU', 'Linear', 'Logistic', 'Tanh'.
+        
+        Raises:
+            Exception: If the specified method is not supported.
         """
         # a dictionary of activation methods
         methods = {
@@ -32,8 +35,11 @@ class Activations():
         """
         Apply the ReLU activation function.
         
-        Parameters:
-        inputs (ndarray): Input data.
+        Args:
+            inputs (ndarray): Input data.
+        
+        Returns:
+            ndarray: Output after applying ReLU activation.
         """
         return np.maximum(0, inputs)  # Output is max(0, input)
 
@@ -41,8 +47,11 @@ class Activations():
         """
         Apply the Linear activation function (identity function).
         
-        Parameters:
-        inputs (ndarray): Input data.
+        Args:
+            inputs (ndarray): Input data.
+        
+        Returns:
+            ndarray: Output after applying Linear activation.
         """
         return inputs  # Output is the same as input
 
@@ -50,8 +59,11 @@ class Activations():
         """
         Apply the Logistic (Sigmoid) activation function.
         
-        Parameters:
-        inputs (ndarray): Input data.
+        Args:
+            inputs (ndarray): Input data.
+        
+        Returns:
+            ndarray: Output after applying Logistic activation.
         """
         return 1 / (1 + np.exp(-inputs))  # Sigmoid formula
 
@@ -59,7 +71,10 @@ class Activations():
         """
         Apply the Tanh activation function.
         
-        Parameters:
-        inputs (ndarray): Input data.
+        Args:
+            inputs (ndarray): Input data.
+        
+        Returns:
+            ndarray: Output after applying Tanh activation.
         """
         return np.tanh(inputs)  # Hyperbolic tangent formula

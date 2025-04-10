@@ -19,6 +19,10 @@ class Layer():
             activation (callable): Activation function for the layer.
             weight_initializer (float): Scaling factor for weight initialization.
             bias_initializer (float): Scaling factor for bias initialization.
+        
+        Attributes:
+            weights (ndarray): Weight matrix of shape (n_inputs, n_neurons).
+            biases (ndarray): Bias vector of shape (1, n_neurons).
         """
         # Initialize weights with random values scaled by weight_initializer
         self.weights = weight_initializer * np.random.randn(n_inputs, n_neurons)
@@ -34,8 +38,8 @@ class Layer():
         Args:
             inputs (ndarray): Input data of shape (batch_size, n_inputs).
         
-        Sets:
-            output (ndarray): Output of the layer after applying weights, biases, and activation.
+        Returns:
+            ndarray: Output of the layer after applying weights, biases, and activation.
         """
         # Compute the dot product of inputs and weights, add biases, and apply activation
         self.output = self.activation(inputs @ self.weights + self.biases)
