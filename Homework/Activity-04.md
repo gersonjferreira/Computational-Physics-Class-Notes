@@ -1,6 +1,6 @@
 # Atividade 4
 
-Nesta primeira atividade, abordaremos os tópicos:
+Nesta atividade, abordaremos os tópicos:
 
 - Números aleatórios: use `rng = np.random.default_rng()`, veja exemplos na [página do numpy](https://numpy.org/doc/2.1/reference/random/generator.html#numpy.random.default_rng)
 - Loops para gerar listas, vetores, ou arrays.
