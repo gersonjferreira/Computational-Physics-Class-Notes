@@ -12,17 +12,17 @@ Desta vez mudei a organização das notas. Preste atenção na nova organizaçã
 
 Considere a equação diferencial para um corpo em queda livre com resistência do ar: 
 
-$$\frac{dv}{dt} = -g - \frac{b}{m} v^2,$$ 
+$$\frac{dv}{dt} = -g - \frac{b}{m} v$$ 
 
 onde $g$ é a aceleração da gravidade, $b$ é o coeficiente de arrasto, e $m$ é a massa do corpo. A equação acima é uma equação diferencial de condição inicial (IVP = initial value problem).
 
-Considere $g = 9.8$ m/s², $b = 0.1$ kg/m, e $m = 1$ kg. A condição inicial é $v(0) = 0$ m/s.
+Considere $g = 9.8$ m/s², $b = 0.1$ kg/s, e $m = 1$ kg. A condição inicial é $v(0) = 0$ m/s.
 
 ### Atividades mínimas: 65 pts
 
 - 1a. Considerando que o tempo avança em passos discretos na forma de $t_n = n \Delta t$, sendo $\Delta t$ o passo temporal, use o método de Euler para obter a formula iterativa para a velocidade no instante $t_{n+1}$ em termos dos dados em $t_n$: 
 
-$$ v_{n+1} = v_n + \left(-g - \frac{b}{m} v_n^2\right)\Delta t $$
+$$ v_{n+1} = v_n + \left(-g - \frac{b}{m} v_n\right)\Delta t $$
 
 - 1b. Usando $\Delta t = 0.1$ s, faça uma tabela no Excel com os valores de $t_n$ e $v_n$ para $n=0, 1, \ldots, 100$. Use a fórmula de Euler para calcular $v_{n+1}$ a partir de $v_n$ iterativamente no Excel ou outras planilhas eletrônicas equivalentes.
 
