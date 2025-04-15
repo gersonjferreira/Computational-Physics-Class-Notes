@@ -10,7 +10,11 @@ Desta vez mudei a organização das notas. Preste atenção na nova organizaçã
 
 ## [1] Método de Euler via planilha eletrônica
 
-Considere a equação diferencial para um corpo em queda livre com resistência do ar: $$\frac{dv}{dt} = -g - \frac{b}{m} v^2,$$ onde $g$ é a aceleração da gravidade, $b$ é o coeficiente de arrasto, e $m$ é a massa do corpo. A equação acima é uma equação diferencial de condição inicial (IVP = initial value problem).
+Considere a equação diferencial para um corpo em queda livre com resistência do ar: 
+
+$$\frac{dv}{dt} = -g - \frac{b}{m} v^2,$$ 
+
+onde $g$ é a aceleração da gravidade, $b$ é o coeficiente de arrasto, e $m$ é a massa do corpo. A equação acima é uma equação diferencial de condição inicial (IVP = initial value problem).
 
 Considere $g = 9.8$ m/s², $b = 0.1$ kg/m, e $m = 1$ kg. A condição inicial é $v(0) = 0$ m/s.
 
@@ -46,7 +50,17 @@ Esta é uma EDO de segunda ordem, mas os métodos de Euler e RK4 são feitos par
 
 ### Atividades mínimas: 65 pts
 
-- 2a. Transformar a EDO de segunda ordem em um sistema de duas EDOs de primeira ordem via *redução de ordem*. Para isso, introduza a variável $v = dx/dt$ e escreva o sistema de duas EDOs para $x(t)$ e $v(t)$. Procure escrever o sistema de equações em uma forma vetorial, tal que fique com a seguinte estrutura: $$\frac{d}{dt} \begin{pmatrix} x \\ v \end{pmatrix} = \begin{pmatrix} f_1(t, x, v) \\ f_2(t, x, v) \end{pmatrix}$$ ou $$ \frac{d\vec{y}}{dt} = \vec{f}(t, \vec{y})$$
+- 2a. Transformar a EDO de segunda ordem em um sistema de duas EDOs de primeira ordem via *redução de ordem*. Para isso, introduza a variável $v = dx/dt$ e escreva o sistema de duas EDOs para $x(t)$ e $v(t)$. Procure escrever o sistema de equações em uma forma vetorial, tal que fique com a seguinte estrutura:
+
+$$
+\frac{d}{dt} \begin{pmatrix} x \\ v \end{pmatrix} = \begin{pmatrix} f_1(t, x, v) \\ f_2(t, x, v) \end{pmatrix}
+$$ 
+
+ou 
+
+$$ 
+\frac{d\vec{y}}{dt} = \vec{f}(t, \vec{y})
+$$
 
 ### Atividades intermediárias: 20 pts
 
@@ -59,17 +73,24 @@ Esta é uma EDO de segunda ordem, mas os métodos de Euler e RK4 são feitos par
 ## [3] Vibrações na corda
 
 Considere a equação de ondas:
+
 $$
 \frac{\partial^2 u}{\partial t^2} = c^2 \frac{\partial^2 u}{\partial x^2}
 $$
+
 onde $u(x, t)$ é a função de onda, $c$ é a velocidade da onda, e $x$ é a posição ao longo da corda. A equação acima é uma equação diferencial de condição de contorno (BVP = boundary value problem). Como condição de contorno, consideraremos que as duas pontas da corda estão presas: $u(0, t) = 0$ e $u(L, t) = 0$, onde $L$ é o comprimento da corda. 
 
 Neste exercício estaremos interessados apenas nos modos normais de vibração e não na evolução temporal da onda. Portanto, não precisamos de condição inicial.
 
 ### Atividades mínimas: 65 pts
 
-- 3a. Considere o *ansatz* $$
-u(x, t) = \phi(x) e^{i \omega t}. $$ Substitua o *ansatz* na equação de ondas e obtenha a equação diferencial para $\phi(x)$. Note que ela toma a forma de uma equação de autovalores e autovetores. Obtenha as soluções analíticas.
+- 3a. Considere o *ansatz*
+
+$$
+u(x, t) = \phi(x) e^{i \omega t}. 
+$$ 
+
+Substitua o *ansatz* na equação de ondas e obtenha a equação diferencial para $\phi(x)$. Note que ela toma a forma de uma equação de autovalores e autovetores. Obtenha as soluções analíticas.
 
 - 3b. Use o método de diferenças finitas para expressar o operador $d^2/dx^2$ na forma de uma matriz tridiagonal (**veja as notas de aula do professor**). Para isso, considere uma grade de pontos igualmente espaçados $x_n = n \Delta x$, com $n=0, 1, \ldots, N-1$ e $\Delta x = L/(N-1)$. Com isso, você terá escrito a equação diferencial na forma $$A \phi = \lambda \phi,$$ onde $A$ é um matriz e $\lambda$ é o autovalor. Identifique corretamente a matriz $A$ e o autovalor $\lambda$ em termos dos parâmetros do problema.
 
