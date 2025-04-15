@@ -1,5 +1,7 @@
 # Exercícios para o futuro
 
+TO DO: reorganizar atividades 1-4 para separar os exercícios.
+
 Lembretes de exercícios que gostaria de elaborar para próximas turmas.
 
 1. Coelho que sempre salta metade do caminho até a cenoura. Usar `while` para calcular quantos saltos são necessários para o coelho chegar até a cenoura dada uma certa precisão de convergência. O exercício serve para diferençar o uso de `while` e `for`.
