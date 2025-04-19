@@ -30,7 +30,6 @@ Nos arquivos `exemplo01.py`, `exemplo02.py` iremos implementar alguns exemplos d
 
 ### Exemplo 1: lançamento oblíquo
 
-Crie a particula inicialmente com posição (x,y) = (0,0), velocidade (vx,vy) = (10,10) m/s, e massa m = 1 kg. Consideraremos apenas a força da gravidade, (fx, fy) = (0, -9.8) m/s². A cada dt = 0.1 s, aplique a força da gravidade e atualize a posição e velocidade da partícula. Salve a posição, velocidade e tempo em listas ou arrays para posterior plotagem. Interrompa o loop quando a partícula atingir o solo (y <= 0). Faça um gráfico da posição como função do tempo.
+Crie a particula inicialmente com posição (x,y) = (0,0), velocidade (vx,vy) = (10,10) m/s, e massa m = 1 kg. Consideraremos apenas a força da gravidade, (fx, fy) = (0, -9.8) m/s². A cada dt = 0.1 s, aplique a força da gravidade e atualize a posição e velocidade da partícula. Salve a posição, velocidade e tempo em listas ou arrays para posterior plotagem. Interrompa o loop quando a partícula atingir o solo (y <= 0). Faça um gráfico paramétrico da trajetória da partícula (x vs y).
 
-### Exemplo 2: em breve
-
+**DICA:** Para tornar a implementação mais interessante, você pode adicionar o *tempo* como um atributo da partícula, e tratar o tempo, posições e velocidades como listas ou arrays que vão se atualizando a cada iteração do loop pelo método `newton`. Desta forma ficará mais fácil organizar os dados e plotar os gráficos.
