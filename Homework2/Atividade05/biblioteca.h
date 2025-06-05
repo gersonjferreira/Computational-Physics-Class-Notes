@@ -1,0 +1,1 @@
+int quadrado(int valor);

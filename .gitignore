@@ -1,3 +1,10 @@
+# c code
+*.o
+*.a
+*.so
+*.out
+
+
 # local files
 *.npz
 
