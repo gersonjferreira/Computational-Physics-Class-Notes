@@ -1,33 +1,30 @@
 # Atividade 5
 
-## Teoria do funcional da densidade
-
-> Atividade em preparação
-
-## Instalar Quantum Espresso
-
-> Fizemos em sala de aula. Passarei as instruções a limpo aqui.
-
 ## Entendendo o processo de compilação
 
 > Veja arquivos na pasta `Atividade-05`
 
 1. **Compilação simples**
 
-Para compilar o código e executar `pi.c` manualmente, rode:
+Para compilar e executar um programa C simples (`pi.c`):
 
 ```bash
-# compilar
+# Compilar
 $ gcc pi.c -o pi.out
-# executar
+# Executar
 $ ./pi.out
 ```
 
 2. **Usando mais de um arquivo .c**
 
-Tente compilar o arquivo `main.c` segundo as instruções **ACIMA** e atente ao erro.
+Se tentar compilar apenas `main.c`:
 
-Agora, Compile conjuntamente `main.c` e `biblioteca.c` com o comando abaixo e veja se funciona.
+```bash
+$ gcc main.c -o main.out
+```
+Provavelmente ocorrerá erro de símbolo indefinido, pois funções implementadas em `biblioteca.c` não estarão presentes.
+
+Para compilar e linkar ambos arquivos:
 
 ```bash
 $ gcc main.c biblioteca.c -o quadrado1.out
@@ -36,30 +33,119 @@ $ ./quadrado1.out
 
 3. **Compilando como biblioteca estática**
 
+Crie uma biblioteca estática para reutilizar código:
+
 ```bash
-# compila objeto sem rodar o linker
+# Compila o objeto
 $ gcc -c biblioteca.c -o biblioteca.o
-# agrupa objetos em biblioteca estática
+# Agrupa em biblioteca estática
 $ ar rcs libbiblioteca.a biblioteca.o
-# compila main e linka com a biblioteca
+# Compila main e linka com a biblioteca
 $ gcc main.c -L. -lbiblioteca -o quadrado2.out
-# execute
+# Executa
 $ ./quadrado2.out
 ```
 
 4. **Compilando como biblioteca dinâmica**
 
+Bibliotecas dinâmicas permitem atualização sem recompilar o programa principal:
+
 ```bash
-# compila objeto sem rodar o linker
+# Compila objeto
 $ gcc -c biblioteca.c -o biblioteca.o
-# converte objeto para biblioteca dinâmica
+# Cria biblioteca dinâmica
 $ gcc -shared -o libbiblioteca.so biblioteca.o
-# compila main e linka com biblioteca
+# Compila main e linka com a biblioteca
 $ gcc main.c -L. -lbiblioteca -o quadrado3.out
-# tente executar e atente ao erro
+# Tente executar
 $ ./quadrado3.out
-# define caminho para busca de libs dinâmicas
+# Se der erro de biblioteca não encontrada, defina o caminho:
 $ export LD_LIBRARY_PATH=.
-# tente novamente
+# Tente novamente
 $ ./quadrado3.out
 ```
+
+# Usando make e Makefile
+
+O `make` automatiza a compilação com regras definidas em um arquivo `Makefile`. Exemplo:
+
+```makefile
+# Makefile simples
+all: quadrado2.out quadrado3.out
+
+quadrado2.out: main.c libbiblioteca.a
+	gcc main.c -L. -lbiblioteca -o quadrado2.out
+
+libbiblioteca.a: biblioteca.o
+	ar rcs libbiblioteca.a biblioteca.o
+
+biblioteca.o: biblioteca.c
+	gcc -c biblioteca.c -o biblioteca.o
+
+quadrado3.out: main.c libbiblioteca.so
+	gcc main.c -L. -lbiblioteca -o quadrado3.out
+
+libbiblioteca.so: biblioteca.o
+	gcc -shared -o libbiblioteca.so biblioteca.o
+
+clean:
+	rm -f *.o *.a *.so quadrado2.out quadrado3.out
+```
+
+Para compilar:
+```bash
+make
+```
+Para limpar:
+```bash
+make clean
+```
+
+# Usando autoconf
+
+O `autoconf` gera scripts de configuração portáveis. Passos básicos:
+1. Crie `configure.ac`:
+   ```m4
+   AC_INIT([quadrado], [1.0])
+   AM_INIT_AUTOMAKE
+   AC_PROG_CC
+   AC_CONFIG_FILES([Makefile])
+   AC_OUTPUT
+   ```
+2. Crie `Makefile.am`:
+   ```makefile
+   bin_PROGRAMS = quadrado2.out
+   quadrado2_out_SOURCES = main.c biblioteca.c
+   ```
+3. Gere e rode os scripts:
+   ```bash
+   autoreconf -i
+   ./configure
+   make
+   ```
+
+# Usando cmake
+
+O `cmake` é uma ferramenta moderna para projetos multiplataforma. Exemplo de `CMakeLists.txt`:
+```cmake
+cmake_minimum_required(VERSION 3.0)
+project(quadrado)
+
+add_library(biblioteca STATIC biblioteca.c)
+add_executable(quadrado2.out main.c)
+target_link_libraries(quadrado2.out biblioteca)
+
+add_library(biblioteca_shared SHARED biblioteca.c)
+add_executable(quadrado3.out main.c)
+target_link_libraries(quadrado3.out biblioteca_shared)
+```
+Para compilar:
+```bash
+mkdir build
+cd build
+cmake ..
+make
+```
+
+Essas ferramentas facilitam a automação e portabilidade da compilação dos seus projetos C.
+
