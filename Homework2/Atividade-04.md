@@ -33,12 +33,3 @@ onde $T$ é a temperatura do café, $T_{amb} = 25$ ºC é a temperatura ambiente
 
 6. Ainda seguindo o tutorial, implemente a PINN sem conhecer o valor da taxa $r$. A rede deve ser capaz de descobrir o valor correto. Compare com a solução analítica e com a NN de regressão simples.
 
-## Exercício 2
-
-Ainda não decidi. As opções são:
-
-- EDO do oscilador harmônico. Ver TCC Bianca e muitos tutoriais online.
-
-- Evolução temporal da equação de onda 1D.
-
-- EDP para difusão de calor 2D, ou membrana vibrante 2D.
