@@ -28,7 +28,7 @@ $$\left[ \dfrac{\hbar^2}{2m}|\vec{k}-\vec{G}|^2 -E_{\vec{k}}\right]c(\vec{k}-\ve
 
 Note que a forma da equação central acima é equivalente a uma equação matricial, onde o primeiro termo $\lambda_{\vec{k}-\vec{G}} = \frac{\hbar^2}{2m}|\vec{k}-\vec{G}|^2$ compõe a diagonal e o segundo termo representa o produto de uma matriz $U_{\vec{G}'-\vec{G}}$, elemento da linha $\vec{G}'$ e coluna $\vec{G}$, por um vetor coluna $c(\vec{k}-\vec{G}')$, linha $\vec{G}'$. Assim, a equação central pode ser escrita como
 
-$$
+```math
 \begin{pmatrix}
 \lambda_{\vec{k}-\vec{G_1}} + V_0 & V_{2,1} & V_{3,1} & \cdots
 \\
@@ -57,7 +57,8 @@ c(\vec{k} - \vec{G}_3)
 \\
 \vdots
 \end{pmatrix}
-$$
+```
+
 onde $V_{i,j} = V_{\vec{G}_i-\vec{G}_j}$. A matriz à esquerda é o Hamiltoniano na representação matricial da base de ondas planas.
 
 ## Exercício 1 - Caso 1D simples
