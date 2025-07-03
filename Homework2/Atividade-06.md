@@ -84,3 +84,25 @@ $$
 
 Faça um código que diagonalize este Hamiltoniano para k no intervalo da 1ª zona de Brillouin, escolhendo e variando o valor de $\alpha$ e o número de ondas planas ($G$). Faça o gráfico das bandas e compare com as figuras mencionadas acima.
 
+Para a figura ficar igual à Figura 9.4 do livro **Ashcroft & Mermin**, você terá que adicionar outras diagonais além do $$\alpha$$. Tente entender como estes acoplamentos funcionam.
+
+## Exercício 2 - Caso 1D com V(x)
+
+Escolha uma função para $V(x)$ que respeite $V(x) = V(x+R)$ com $R=1$. Alguns exemplos:
+
+$$V(x) = A \cos(2\pi q x)$$
+
+$$V(x) = -A\exp[-x^2 / 2\gamma^2]$$
+
+$$V(x) = -A\exp[-(x-1/4)^2 / 2\gamma^2]-B\exp[-(x+1/4)^2 / 2\gamma^2]$$
+
+No caso das exponenciais, escolha um alargamento $\gamma$ pequeno, tal que a gaussiana esteja contida no intervalo de x de [0,1]. Faça gráficos de V(x) por x para verificar se sua escolha de parâmetros está boa.
+
+Construa os termos do potencial na equação central via:
+
+$$V_{m,n} = \int_0^1 V(x)e^{-i G_{m,n}x}dx = \int_0^1 V(x)e^{-i 2\pi(m-n)x}dx$$
+
+Imprima na tela a matrix $V_{m,n}$ e compare com a escolha de $\alpha$ (e outras diagonais) do exercício anterior. 
+
+Calcule as bandas para esta nova matriz $V_{m,n}$ e compare como cada tipo de potencial afeta os resultados.
+
